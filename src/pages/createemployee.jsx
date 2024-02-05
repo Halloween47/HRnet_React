@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import '../App.css'
-import EmployeList from './employelist'
 
 function CreateEmployee() {
+   function saveEmployee() {
+
+   }
   return (
     <>
       <div className="title">
@@ -47,7 +49,7 @@ function CreateEmployee() {
             <option>Legal</option>
           </select>
         </form>
-        <button onclick="saveEmployee()">Save</button>
+        <button onclick={saveEmployee}>Save</button>
       </div>
       <div id="confirmation" className="modal">
         Employee Created!
