@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import '../App.css'
+import EmployeList from './employelist'
 
 function CreateEmployee() {
   return (
@@ -7,7 +9,7 @@ function CreateEmployee() {
         <h1>HRnet</h1>
       </div>
       <div className="container">
-        <a href="employee-list.html">View Current Employees</a>
+        <Link to="/employeList">View Current Employees</Link>
         <h2>Create Employee</h2>
         <form action="#" id="create-employee">
           <label for="first-name">First Name</label>
