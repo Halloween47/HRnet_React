@@ -5,8 +5,8 @@ import { useState } from 'react'
 import { addEmployee } from '../store/employees'
 
 function CreateEmployee() {
-  const [firstname, setFirstname] = useState('')
-  const [lastname, setLastname] = useState('')
+  const [firstName, setFirstname] = useState('')
+  const [lastName, setLastname] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [startDate, setStartDate] = useState('')
   const [street, setStreet] = useState('')
@@ -19,8 +19,8 @@ function CreateEmployee() {
 
   function saveEmployee() {
     const newEmployee = {
-      firstname,
-      lastname,
+      firstName,
+      lastName,
       dateOfBirth,
       startDate,
       street,
@@ -43,7 +43,7 @@ function CreateEmployee() {
           <label htmlFor="first-name">First Name</label>
           <input
             type="text"
-            value={firstname}
+            value={firstName}
             onChange={(e) => setFirstname(e.target.value)}
             id="first-name"
           />
@@ -51,7 +51,7 @@ function CreateEmployee() {
           <label htmlFor="last-name">Last Name</label>
           <input
             type="text"
-            value={lastname}
+            value={lastName}
             onChange={(e) => setLastname(e.target.value)}
             id="last-name"
           />

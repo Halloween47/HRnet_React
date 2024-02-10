@@ -7,17 +7,20 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+import { useSelector } from 'react-redux'
+
+import { AppState } from '../store/types'
 
 type Person = {
   firstName: string
   lastName: string
-  stardate: number
+  starDate: number
   departement: number
   dateOfBirth: string
-  street: number
+  street: string
   city: string
-  state: string
-  zipcode: number
+  // state: string
+  zipCode: number
 }
 
 const defaultData: Person[] = [
@@ -29,7 +32,7 @@ const defaultData: Person[] = [
   //   dateOfBirth: 'In Relationship',
   //   street: 50,
   //   city: 'San Francisco',
-  //   state: 'Arizona',
+  //   // state: 'Arizona',
   //   zipcode: 21456,
   // },
   // {
@@ -40,7 +43,7 @@ const defaultData: Person[] = [
   //   dateOfBirth: 'Single',
   //   street: 80,
   //   city: 'San Francisco',
-  //   state: 'Arizona',
+  //   // state: 'Arizona',
   //   zipcode: 21456,
   // },
   // {
@@ -51,11 +54,12 @@ const defaultData: Person[] = [
   //   dateOfBirth: 'Complicated',
   //   street: 10,
   //   city: 'San Francisco',
-  //   state: 'Arizona',
+  //   // state: 'Arizona',
   //   zipcode: 21456,
   // },
 ]
 
+// const columnHelper = createColumnHelper<Person>()
 const columnHelper = createColumnHelper<Person>()
 
 const columns = [
@@ -69,7 +73,7 @@ const columns = [
     header: () => <span>Last Name</span>,
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor('stardate', {
+  columnHelper.accessor('starDate', {
     header: () => 'Star Date',
     cell: (info) => info.renderValue(),
     footer: (info) => info.column.id,
@@ -90,25 +94,31 @@ const columns = [
     header: 'City',
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor('state', {
-    header: 'State',
-    footer: (info) => info.column.id,
-  }),
-  columnHelper.accessor('zipcode', {
+  // columnHelper.accessor('state', {
+  //   header: 'State',
+  //   footer: (info) => info.column.id,
+  // }),
+  columnHelper.accessor('zipCode', {
     header: 'Zip Code',
     footer: (info) => info.column.id,
   }),
 ]
 
 function Table() {
-  const [data, setData] = React.useState(() => [...defaultData])
+  const employeesList = useSelector((state: AppState) => state.employees.list);
+  console.log(employeesList);
+  // const [data, setData] = React.useState(() => [...defaultData])
+  const [data, setData] = React.useState(() => [...employeesList])
+  
+  console.log(data);
+  
   const rerender = React.useReducer(() => ({}), {})[1]
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
-  console.log(data);
+ 
   
 
   return (
