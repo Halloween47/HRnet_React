@@ -1,7 +1,7 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CreateEmployee from './pages/createemployee'
-import EmployeList from './pages/employelist'
+import EmployeList from './pages/employelist.jsx'
 
 function App() {
   return (

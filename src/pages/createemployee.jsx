@@ -14,13 +14,21 @@ function CreateEmployee() {
   const [zipCode, setZipCode] = useState('')
 
   const dispatch = useDispatch()
-  const employeesList = useSelector((state) => state.employees.list);
-  console.log(employeesList); 
+  const employeesList = useSelector((state) => state.employees.list)
+  console.log(employeesList)
 
   function saveEmployee() {
-    const newEmployee = { firstname, lastname, dateOfBirth, startDate, street, city, zipCode };
-    dispatch(addEmployee(newEmployee));
-    console.log(employeesList); 
+    const newEmployee = {
+      firstname,
+      lastname,
+      dateOfBirth,
+      startDate,
+      street,
+      city,
+      zipCode,
+    }
+    dispatch(addEmployee(newEmployee))
+    console.log(employeesList)
   }
 
   return (
@@ -41,45 +49,57 @@ function CreateEmployee() {
           />
 
           <label htmlFor="last-name">Last Name</label>
-          <input type="text"
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-           id="last-name" />
+          <input
+            type="text"
+            value={lastname}
+            onChange={(e) => setLastname(e.target.value)}
+            id="last-name"
+          />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <input id="date-of-birth"
-          value={dateOfBirth}
-          onChange={(e) => setDateOfBirth(e.target.value)} 
-          type="text" />
+          <input
+            id="date-of-birth"
+            value={dateOfBirth}
+            onChange={(e) => setDateOfBirth(e.target.value)}
+            type="text"
+          />
 
           <label htmlFor="start-date">Start Date</label>
-          <input id="start-date"
-          value={startDate}
-          onChange={(e) => setStartDate(e.target.value)}
-          type="text" />
+          <input
+            id="start-date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            type="text"
+          />
           <fieldset className="address">
             <legend>Address</legend>
 
             <label htmlFor="street">Street</label>
-            <input id="street"
-            value={street}
-            onChange={(e) => setStreet(e.target.value)}
-            type="text" />
+            <input
+              id="street"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              type="text"
+            />
 
             <label htmlFor="city">City</label>
-            <input id="city" 
-            value={city}
-          onChange={(e) => setCity(e.target.value)}
-          type="text" />
+            <input
+              id="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              type="text"
+            />
 
             <label htmlFor="state">State</label>
             <select name="state" id="state"></select>
 
             <label htmlFor="zip-code">Zip Code</label>
-            <input id="zip-code" 
-            value={zipCode}
-            onChange={(e) => setZipCode(e.target.value)}
-            type="number" />
+            <input
+              id="zip-code"
+              value={zipCode}
+              onChange={(e) => setZipCode(e.target.value)}
+              type="number"
+            />
           </fieldset>
           <label htmlFor="department">Department</label>
           <select name="department" id="department">
