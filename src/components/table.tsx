@@ -1,12 +1,14 @@
 import '../css/employelist.css'
 
 import * as React from 'react'
+
 import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table'
+
 import { useSelector } from 'react-redux'
 
 import { AppState } from '../store/types'
@@ -59,7 +61,6 @@ const defaultData: Person[] = [
   // },
 ]
 
-// const columnHelper = createColumnHelper<Person>()
 const columnHelper = createColumnHelper<Person>()
 
 const columns = [
@@ -105,40 +106,29 @@ const columns = [
 ]
 
 function Table() {
-  const employeesList = useSelector((state: AppState) => state.employees.list);
-  console.log(employeesList);
-  // const [data, setData] = React.useState(() => [...defaultData])
+  const employeesList = useSelector((state: AppState) => state.employees.list)
+  console.log(employeesList)
+
   const [data, setData] = React.useState(() => [...employeesList])
-  
-  console.log(data);
-  
+  // const [data, setData] = React.useState<Person[]>([]);
+
+  React.useEffect(() => {
+    setData([...employeesList])
+  }, [employeesList])
+
   const rerender = React.useReducer(() => ({}), {})[1]
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   })
- 
-  
 
   return (
     <>
       <br />
       <div className="p-2">
-        <select
-          value={table.getState().pagination.pageSize}
-          onChange={(e) => {
-            table.setPageSize(Number(e.target.value))
-          }}
-        >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
-          <br />
-          
+        <br />
         <table>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -157,19 +147,20 @@ function Table() {
             ))}
           </thead>
           <tbody>
-          {data.length !== 0 ? 
-          table.getRowModel().rows.map((row) => (
-              <tr key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))
-          
-            :  ("No data available") 
-            }
+            {data.length !== 0
+              ? table.getRowModel().rows.map((row) => (
+                  <tr key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <td key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              : 'No data available'}
           </tbody>
           <tfoot>
             {table.getFooterGroups().map((footerGroup) => (
@@ -197,3 +188,6 @@ function Table() {
   )
 }
 export default Table
+
+/////////////////////
+/////////////////////

@@ -1,8 +1,8 @@
 export interface AppState {
-    // employees: string[];
-    employees: listState;
+  // employees: string[];
+  employees: listState
 }
 
 export interface listState {
-    list: (string | number | any)[]
+  list: (string | number | any)[]
 }
