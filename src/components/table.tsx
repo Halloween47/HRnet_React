@@ -203,6 +203,10 @@ function Table() {
         <button onClick={() => rerender()} className="border p-2">
           Rerender
         </button>
+
+<button onClick={() => table.previousPage()}>Précédent</button>
+<button onClick={() => table.nextPage()}>Suivant</button>
+
       </div>
     </>
   )
