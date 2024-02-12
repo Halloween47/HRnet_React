@@ -14,8 +14,7 @@ function CreateEmployee() {
   const [dateOfBirth, setDateOfBirth] = useState('')
   
   const [dateOfBirthValueId, setDateOfBirthValueId] = useState('')
-  console.log(dateOfBirthValueId)
-  
+  console.log(dateOfBirthValueId);
   // const [startDate, setStartDate] = useState('')
   const [startDate, setStartDate] = useState(new Date())
   const [street, setStreet] = useState('')
@@ -24,7 +23,6 @@ function CreateEmployee() {
   
   const dispatch = useDispatch()
   const employeesList = useSelector((state) => state.employees.list)
-  console.log(employeesList)
   
   
 
@@ -32,8 +30,8 @@ function CreateEmployee() {
     const newEmployee = {
       firstName,
       lastName,
-      dateOfBirth,
-      // dateOfBirthValueId,
+      // dateOfBirth,
+      dateOfBirthValueId,
       startDate,
       street,
       city,
@@ -45,11 +43,9 @@ function CreateEmployee() {
 
 
   useEffect(() => {
-    console.log(dateOfBirth)
     const valueInputDateOfBirth = document.getElementById('date-of-birth')
+    console.log(valueInputDateOfBirth.value);
     setDateOfBirthValueId(valueInputDateOfBirth.value)
-    console.log(dateOfBirthValueId)
-    console.log(dateOfBirth);
   }, [dateOfBirthValueId, dateOfBirth])
 
   const formatDate = (date) => {
@@ -107,14 +103,15 @@ function CreateEmployee() {
             placeholderText="Séléctionnez une date"
             // selected={dateOfBirth}
             onChange={(date) => {
+              const dateOfBirthValue = document.getElementById('date-of-birth')
+              console.log(date);
               setDateOfBirth(date)
-              console.log(date)
+              console.log(dateOfBirthValue.value);
+              // console.log(date)
             }}
             id="date-of-birth"
             locale={fr}
             value={dateOfBirth ? formatDate(dateOfBirth) : ''}
-            // value={dateOfBirth}
-            // value={dateOfBirthValueId}
           />
 
           <label htmlFor="start-date">Start Date</label>
