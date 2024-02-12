@@ -7,6 +7,7 @@ import {
   flexRender,
   getCoreRowModel,
   useReactTable,
+  getPaginationRowModel,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -123,12 +124,30 @@ function Table() {
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
   })
 
   return (
     <>
       <br />
       <div className="p-2">
+        <select
+          value={table.options.state.pagination?.pageSize}
+          onChange={(e) => {
+            // table.setPageSize(e.target.value)
+            const pageSize = parseInt(e.target.value, 10) // Convertir la chaîne en nombre
+            table.setPageSize(pageSize)
+          }}
+        >
+          {[1, 2, 3, 10, 25, 50].map((pageSizeEl) => {
+            return (
+              <option key={pageSizeEl} value={pageSizeEl}>
+                Show {pageSizeEl}
+              </option>
+            )
+          })}
+        </select>
+
         <br />
         <table>
           <thead>

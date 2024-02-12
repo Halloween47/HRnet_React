@@ -14,25 +14,24 @@ function CreateEmployee() {
   const [firstName, setFirstname] = useState('')
   const [lastName, setLastname] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState(null)
-  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy'); // Format de date par défaut
-  console.log(dateOfBirthFormat);
+  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy') // Format de date par défaut
+  console.log(dateOfBirthFormat)
 
-  
   const [dateOfBirthValueId, setDateOfBirthValueId] = useState('')
-  console.log(dateOfBirthValueId);
+  console.log(dateOfBirthValueId)
   // const [startDate, setStartDate] = useState('')
   const [startDate, setStartDate] = useState(null)
-  const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy'); // Format de date par défaut
-console.log(startDateFormat);
+  const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy') // Format de date par défaut
+  console.log(startDateFormat)
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [departement, setDepartement] = useState('')
   const [zipCode, setZipCode] = useState('')
-  
+
   const dispatch = useDispatch()
   const employeesList = useSelector((state) => state.employees.list)
-  
+
   const optionsState = [
     { value: 'Alabama', label: 'Alabama' },
     { value: 'Alaska', label: 'Alaska' },
@@ -42,11 +41,11 @@ console.log(startDateFormat);
   ]
 
   const optionsDepartements = [
-    {value: 'sales', label: 'Sales'},
-    {value: 'marketing', label: 'Marketing'},
-    {value: 'engineering', label: 'Engineering'},
-    {value: 'human resources', label: 'Human Resources'},
-    {value: 'legal', label: 'Legal'},
+    { value: 'sales', label: 'Sales' },
+    { value: 'marketing', label: 'Marketing' },
+    { value: 'engineering', label: 'Engineering' },
+    { value: 'human resources', label: 'Human Resources' },
+    { value: 'legal', label: 'Legal' },
   ]
 
   function saveEmployee() {
@@ -68,47 +67,46 @@ console.log(startDateFormat);
     console.log(employeesList)
   }
 
-
   useEffect(() => {
     const valueInputDateOfBirth = document.getElementById('date-of-birth')
     // console.log(valueInputDateOfBirth.value);
     // setDateOfBirthValueId(valueInputDateOfBirth.value)
-    const valueState = document.getElementsByClassName(' css-1dimb5e-singleValue');
-    console.log(valueState);
+    const valueState = document.getElementsByClassName(
+      ' css-1dimb5e-singleValue',
+    )
+    console.log(valueState)
   }, [dateOfBirthValueId, dateOfBirth])
 
- 
+  const handleChangeSelectState = (selectedOption) => {
+    console.log(selectedOption.value)
+    setState(selectedOption.value)
+  }
 
-  const handleChangeSelectState = selectedOption => {
-    console.log(selectedOption.value);
-    setState(selectedOption.value);
-  };
+  const handleChangeSelectDepartement = (selectedOption) => {
+    console.log(selectedOption.value)
+    setDepartement(selectedOption.value)
+  }
 
-  const handleChangeSelectDepartement = selectedOption => {
-    console.log(selectedOption.value);
-    setDepartement(selectedOption.value);
-  };
-
-  const handleDateChangeBirth = date => {
-    setDateOfBirth(date);
+  const handleDateChangeBirth = (date) => {
+    setDateOfBirth(date)
     const formattedDate = date.toLocaleDateString('fr-FR', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-    });
-    setDateOfBirthFormat(formattedDate);
-  };
+    })
+    setDateOfBirthFormat(formattedDate)
+  }
 
-  const handleDateChangeStarDate = date => {
-    setStartDate(date);
+  const handleDateChangeStarDate = (date) => {
+    setStartDate(date)
     const formattedDate = date.toLocaleDateString('fr-FR', {
       day: 'numeric',
       month: 'long',
       year: 'numeric',
-    });
+    })
     // setDateFormat(formattedDate);
-    setStartDateFormat(formattedDate);
-  };
+    setStartDateFormat(formattedDate)
+  }
 
   return (
     <>
@@ -174,7 +172,11 @@ console.log(startDateFormat);
 
             <label htmlFor="state">State</label>
             {/* <select name="state" id="state"></select> */}
-            <Select options={optionsState} id='stateValue' onChange={handleChangeSelectState}/>
+            <Select
+              options={optionsState}
+              id="stateValue"
+              onChange={handleChangeSelectState}
+            />
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
@@ -192,7 +194,10 @@ console.log(startDateFormat);
             <option>Human Resources</option>
             <option>Legal</option>
           </select> */}
-          <Select options={optionsDepartements} onChange={handleChangeSelectDepartement} />
+          <Select
+            options={optionsDepartements}
+            onChange={handleChangeSelectDepartement}
+          />
         </form>
         <button onClick={saveEmployee}>Save</button>
       </div>
