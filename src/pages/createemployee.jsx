@@ -8,6 +8,8 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import fr from 'date-fns/locale/fr'
 
+import Select from 'react-select'
+
 function CreateEmployee() {
   const [firstName, setFirstname] = useState('')
   const [lastName, setLastname] = useState('')
@@ -19,22 +21,40 @@ function CreateEmployee() {
   const [startDate, setStartDate] = useState(new Date())
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
+  const [state, setState] = useState('')
+  const [departement, setDepartement] = useState('')
   const [zipCode, setZipCode] = useState('')
   
   const dispatch = useDispatch()
   const employeesList = useSelector((state) => state.employees.list)
   
-  
+  const optionsState = [
+    { value: 'Alabama', label: 'Alabama' },
+    { value: 'Alaska', label: 'Alaska' },
+    { value: 'Arizona', label: 'Arizona' },
+    { value: 'Arkansas', label: 'Arkansas' },
+    { value: 'California', label: 'California' },
+  ]
+
+  const optionsDepartements = [
+    {value: 'sales', label: 'Sales'},
+    {value: 'marketing', label: 'Marketing'},
+    {value: 'engineering', label: 'Engineering'},
+    {value: 'human resources', label: 'Human Resources'},
+    {value: 'legal', label: 'Legal'},
+  ]
 
   function saveEmployee() {
     const newEmployee = {
       firstName,
       lastName,
-      // dateOfBirth,
-      dateOfBirthValueId,
-      startDate,
+      dateOfBirth,
+      // dateOfBirthValueId,
+      // startDate,
+      departement,
       street,
       city,
+      state,
       zipCode,
     }
     dispatch(addEmployee(newEmployee))
@@ -44,8 +64,10 @@ function CreateEmployee() {
 
   useEffect(() => {
     const valueInputDateOfBirth = document.getElementById('date-of-birth')
-    console.log(valueInputDateOfBirth.value);
-    setDateOfBirthValueId(valueInputDateOfBirth.value)
+    // console.log(valueInputDateOfBirth.value);
+    // setDateOfBirthValueId(valueInputDateOfBirth.value)
+    const valueState = document.getElementsByClassName(' css-1dimb5e-singleValue');
+    console.log(valueState);
   }, [dateOfBirthValueId, dateOfBirth])
 
   const formatDate = (date) => {
@@ -71,6 +93,16 @@ function CreateEmployee() {
     const year = date.getFullYear()
     return `${day} ${monthNames[monthIndex]} ${year}`
   }
+
+  const handleChangeSelectState = selectedOption => {
+    console.log(selectedOption.value);
+    setState(selectedOption.value);
+  };
+
+  const handleChangeSelectDepartement = selectedOption => {
+    console.log(selectedOption.value);
+    setDepartement(selectedOption.value);
+  };
 
   return (
     <>
@@ -98,7 +130,7 @@ function CreateEmployee() {
           />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          <DatePicker
+          {/* <DatePicker
             dateFormat={'dd MMMM yyyy'}
             placeholderText="Séléctionnez une date"
             // selected={dateOfBirth}
@@ -112,14 +144,14 @@ function CreateEmployee() {
             id="date-of-birth"
             locale={fr}
             value={dateOfBirth ? formatDate(dateOfBirth) : ''}
-          />
+          /> */}
 
           <label htmlFor="start-date">Start Date</label>
-          <DatePicker
+          {/* <DatePicker
             showIcon
             selected={startDate}
             onChange={(date) => setStartDate(date)}
-          />
+          /> */}
           <fieldset className="address">
             <legend>Address</legend>
 
@@ -140,7 +172,8 @@ function CreateEmployee() {
             />
 
             <label htmlFor="state">State</label>
-            <select name="state" id="state"></select>
+            {/* <select name="state" id="state"></select> */}
+            <Select options={optionsState} id='stateValue' onChange={handleChangeSelectState}/>
 
             <label htmlFor="zip-code">Zip Code</label>
             <input
@@ -151,13 +184,14 @@ function CreateEmployee() {
             />
           </fieldset>
           <label htmlFor="department">Department</label>
-          <select name="department" id="department">
+          {/* <select name="department" id="department">
             <option>Sales</option>
             <option>Marketing</option>
             <option>Engineering</option>
             <option>Human Resources</option>
             <option>Legal</option>
-          </select>
+          </select> */}
+          <Select options={optionsDepartements} onChange={handleChangeSelectDepartement} />
         </form>
         <button onClick={saveEmployee}>Save</button>
       </div>

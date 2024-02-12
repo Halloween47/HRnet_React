@@ -16,12 +16,12 @@ import { AppState } from '../store/types'
 type Person = {
   firstName: string
   lastName: string
-  starDate: number
+  // starDate: number
   departement: number
   dateOfBirth: string
   street: string
   city: string
-  // state: string
+  state: string
   zipCode: number
 }
 
@@ -74,11 +74,11 @@ const columns = [
     header: () => <span>Last Name</span>,
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor('starDate', {
-    header: () => 'Star Date',
-    cell: (info) => info.renderValue(),
-    footer: (info) => info.column.id,
-  }),
+  // columnHelper.accessor('starDate', {
+  //   header: () => 'Star Date',
+  //   cell: (info) => info.renderValue(),
+  //   footer: (info) => info.column.id,
+  // }),
   columnHelper.accessor('departement', {
     header: () => <span>Departement</span>,
     footer: (info) => info.column.id,
@@ -95,10 +95,10 @@ const columns = [
     header: 'City',
     footer: (info) => info.column.id,
   }),
-  // columnHelper.accessor('state', {
-  //   header: 'State',
-  //   footer: (info) => info.column.id,
-  // }),
+  columnHelper.accessor('state', {
+    header: 'State',
+    footer: (info) => info.column.id,
+  }),
   columnHelper.accessor('zipCode', {
     header: 'Zip Code',
     footer: (info) => info.column.id,
