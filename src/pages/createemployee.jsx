@@ -13,12 +13,17 @@ import Select from 'react-select'
 function CreateEmployee() {
   const [firstName, setFirstname] = useState('')
   const [lastName, setLastname] = useState('')
-  const [dateOfBirth, setDateOfBirth] = useState('')
+  const [dateOfBirth, setDateOfBirth] = useState(null)
+  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy'); // Format de date par défaut
+  console.log(dateOfBirthFormat);
+
   
   const [dateOfBirthValueId, setDateOfBirthValueId] = useState('')
   console.log(dateOfBirthValueId);
   // const [startDate, setStartDate] = useState('')
-  const [startDate, setStartDate] = useState(new Date())
+  const [startDate, setStartDate] = useState(null)
+  const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy'); // Format de date par défaut
+console.log(startDateFormat);
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
@@ -48,9 +53,11 @@ function CreateEmployee() {
     const newEmployee = {
       firstName,
       lastName,
-      dateOfBirth,
+      // dateOfBirth,
+      dateFormat: dateOfBirthFormat,
       // dateOfBirthValueId,
       // startDate,
+      startDateFormat,
       departement,
       street,
       city,
@@ -70,29 +77,7 @@ function CreateEmployee() {
     console.log(valueState);
   }, [dateOfBirthValueId, dateOfBirth])
 
-  const formatDate = (date) => {
-    if (!date) {
-      return 'Sélectionnez une date'
-    }
-    const monthNames = [
-      'Janvier',
-      'Février',
-      'Mars',
-      'Avril',
-      'Mai',
-      'Juin',
-      'Juillet',
-      'Août',
-      'Septembre',
-      'Octobre',
-      'Novembre',
-      'Décembre',
-    ]
-    const day = date.getDate()
-    const monthIndex = date.getMonth()
-    const year = date.getFullYear()
-    return `${day} ${monthNames[monthIndex]} ${year}`
-  }
+ 
 
   const handleChangeSelectState = selectedOption => {
     console.log(selectedOption.value);
@@ -102,6 +87,27 @@ function CreateEmployee() {
   const handleChangeSelectDepartement = selectedOption => {
     console.log(selectedOption.value);
     setDepartement(selectedOption.value);
+  };
+
+  const handleDateChangeBirth = date => {
+    setDateOfBirth(date);
+    const formattedDate = date.toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+    setDateOfBirthFormat(formattedDate);
+  };
+
+  const handleDateChangeStarDate = date => {
+    setStartDate(date);
+    const formattedDate = date.toLocaleDateString('fr-FR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
+    // setDateFormat(formattedDate);
+    setStartDateFormat(formattedDate);
   };
 
   return (
@@ -130,28 +136,23 @@ function CreateEmployee() {
           />
 
           <label htmlFor="date-of-birth">Date of Birth</label>
-          {/* <DatePicker
-            dateFormat={'dd MMMM yyyy'}
+          <DatePicker
+            dateFormat={'dd MMMM yyyy dd'}
             placeholderText="Séléctionnez une date"
-            // selected={dateOfBirth}
-            onChange={(date) => {
-              const dateOfBirthValue = document.getElementById('date-of-birth')
-              console.log(date);
-              setDateOfBirth(date)
-              console.log(dateOfBirthValue.value);
-              // console.log(date)
-            }}
+            selected={dateOfBirth}
+            onChange={handleDateChangeBirth}
             id="date-of-birth"
             locale={fr}
-            value={dateOfBirth ? formatDate(dateOfBirth) : ''}
-          /> */}
+          />
 
           <label htmlFor="start-date">Start Date</label>
-          {/* <DatePicker
+          <DatePicker
             showIcon
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
-          /> */}
+            onChange={handleDateChangeStarDate}
+            dateFormat={'dd MMMM yyyy dd'}
+            placeholderText="Séléctionnez une date"
+          />
           <fieldset className="address">
             <legend>Address</legend>
 

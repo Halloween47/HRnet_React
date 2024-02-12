@@ -17,8 +17,9 @@ type Person = {
   firstName: string
   lastName: string
   // starDate: number
+  startDateFormat: number
   departement: number
-  dateOfBirth: string
+  dateFormat: string
   street: string
   city: string
   state: string
@@ -74,16 +75,16 @@ const columns = [
     header: () => <span>Last Name</span>,
     footer: (info) => info.column.id,
   }),
-  // columnHelper.accessor('starDate', {
-  //   header: () => 'Star Date',
-  //   cell: (info) => info.renderValue(),
-  //   footer: (info) => info.column.id,
-  // }),
+  columnHelper.accessor('startDateFormat', {
+    header: () => 'Star Date',
+    cell: (info) => info.renderValue(),
+    footer: (info) => info.column.id,
+  }),
   columnHelper.accessor('departement', {
     header: () => <span>Departement</span>,
     footer: (info) => info.column.id,
   }),
-  columnHelper.accessor('dateOfBirth', {
+  columnHelper.accessor('dateFormat', {
     header: 'Date of Birth',
     footer: (info) => info.column.id,
   }),
