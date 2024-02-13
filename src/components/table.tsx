@@ -8,6 +8,7 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
+  getFilteredRowModel
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -113,6 +114,7 @@ function Table() {
 
   const [data, setData] = React.useState(() => [...employeesList])
   // const [data, setData] = React.useState<Person[]>([]);
+  const [ filterValue, setFilterValue] = React.useState('')
 
   React.useEffect(() => {
     setData([...employeesList])
@@ -125,7 +127,22 @@ function Table() {
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   })
+
+  React.useEffect(() => {
+    table.getHeaderGroups().map(headerArr => {
+      headerArr.headers.map(columnObject => {
+        if(columnObject.column.id === 'firstName') {
+        // if(columnObject.column.id === 'lastName') {
+        // if(columnObject.column.id === 'departement') {
+        // if(columnObject.column.id === 'firstName' || columnObject.column.id === 'departement') {
+          columnObject.column.setFilterValue(filterValue)
+        } 
+      })
+    })
+  }, [table, filterValue])
+  
 
   return (
     <>
@@ -147,6 +164,12 @@ function Table() {
             )
           })}
         </select>
+
+<input type='text' 
+value={filterValue} 
+onChange={e => setFilterValue(e.target.value)} 
+placeholder='firstname filter' />
+
 
         <br />
         <table>
