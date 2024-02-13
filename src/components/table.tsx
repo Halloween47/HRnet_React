@@ -8,7 +8,7 @@ import {
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
-  getFilteredRowModel
+  getFilteredRowModel,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -27,43 +27,6 @@ type Person = {
   state: string
   zipCode: number
 }
-
-const defaultData: Person[] = [
-  // {
-  //   firstName: 'tanner',
-  //   lastName: 'linsley',
-  //   stardate: 24,
-  //   departement: 100,
-  //   dateOfBirth: 'In Relationship',
-  //   street: 50,
-  //   city: 'San Francisco',
-  //   // state: 'Arizona',
-  //   zipcode: 21456,
-  // },
-  // {
-  //   firstName: 'tandy',
-  //   lastName: 'miller',
-  //   stardate: 40,
-  //   departement: 40,
-  //   dateOfBirth: 'Single',
-  //   street: 80,
-  //   city: 'San Francisco',
-  //   // state: 'Arizona',
-  //   zipcode: 21456,
-  // },
-  // {
-  //   firstName: 'joe',
-  //   lastName: 'dirte',
-  //   stardate: 45,
-  //   departement: 20,
-  //   dateOfBirth: 'Complicated',
-  //   street: 10,
-  //   city: 'San Francisco',
-  //   // state: 'Arizona',
-  //   zipcode: 21456,
-  // },
-]
-
 const columnHelper = createColumnHelper<Person>()
 
 const columns = [
@@ -114,7 +77,7 @@ function Table() {
 
   const [data, setData] = React.useState(() => [...employeesList])
   // const [data, setData] = React.useState<Person[]>([]);
-  const [ filterValue, setFilterValue] = React.useState('')
+  const [filterValue, setFilterValue] = React.useState('')
 
   React.useEffect(() => {
     setData([...employeesList])
@@ -131,18 +94,17 @@ function Table() {
   })
 
   React.useEffect(() => {
-    table.getHeaderGroups().map(headerArr => {
-      headerArr.headers.map(columnObject => {
-        if(columnObject.column.id === 'firstName') {
-        // if(columnObject.column.id === 'lastName') {
-        // if(columnObject.column.id === 'departement') {
-        // if(columnObject.column.id === 'firstName' || columnObject.column.id === 'departement') {
+    table.getHeaderGroups().map((headerArr) => {
+      headerArr.headers.map((columnObject) => {
+        if (columnObject.column.id === 'firstName') {
+          // if(columnObject.column.id === 'lastName') {
+          // if(columnObject.column.id === 'departement') {
+          // if(columnObject.column.id === 'firstName' || columnObject.column.id === 'departement') {
           columnObject.column.setFilterValue(filterValue)
-        } 
+        }
       })
     })
   }, [table, filterValue])
-  
 
   return (
     <>
@@ -152,7 +114,7 @@ function Table() {
           value={table.options.state.pagination?.pageSize}
           onChange={(e) => {
             // table.setPageSize(e.target.value)
-            const pageSize = parseInt(e.target.value, 10) // Convertir la chaîne en nombre
+            const pageSize = parseInt(e.target.value, 10) 
             table.setPageSize(pageSize)
           }}
         >
@@ -165,11 +127,12 @@ function Table() {
           })}
         </select>
 
-<input type='text' 
-value={filterValue} 
-onChange={e => setFilterValue(e.target.value)} 
-placeholder='firstname filter' />
-
+        <input
+          type="text"
+          value={filterValue}
+          onChange={(e) => setFilterValue(e.target.value)}
+          placeholder="firstname filter"
+        />
 
         <br />
         <table>
@@ -227,14 +190,11 @@ placeholder='firstname filter' />
           Rerender
         </button>
 
-<button onClick={() => table.previousPage()}>Précédent</button>
-<button onClick={() => table.nextPage()}>Suivant</button>
-
+        <button onClick={() => table.previousPage()}>Précédent</button>
+        <button onClick={() => table.nextPage()}>Suivant</button>
       </div>
     </>
   )
 }
 export default Table
 
-/////////////////////
-/////////////////////
