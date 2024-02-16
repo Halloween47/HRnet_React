@@ -9,6 +9,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   getFilteredRowModel,
+  FilterFns,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -77,7 +78,7 @@ function Table() {
 
   const [data, setData] = React.useState(() => [...employeesList])
   // const [data, setData] = React.useState<Person[]>([]);
-  const [filterValue, setFilterValue] = React.useState('')
+  const [globalFilter, setGlobalFilter] = React.useState('')
 
   React.useEffect(() => {
     setData([...employeesList])
@@ -85,26 +86,37 @@ function Table() {
 
   const rerender = React.useReducer(() => ({}), {})[1]
 
+  // const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
+  //   // Rank the item
+  //   const itemRank = rankItem(row.getValue(columnId), value)
+  
+  //   // Store the itemRank info
+  //   addMeta({
+  //     itemRank,
+  //   })
+  
+  //   // Return if the item should be filtered in/out
+  //   return itemRank.passed
+  // }
+
   const table = useReactTable({
     data,
     columns,
+    // filterFns: {
+    //   fuzzy: fuzzyFilter,
+    // },
+    state: {
+      globalFilter,
+    },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setGlobalFilter,
+    // globalFilterFn: fuzzyFilter,
   })
 
-  React.useEffect(() => {
-    table.getHeaderGroups().map((headerArr) => {
-      headerArr.headers.map((columnObject) => {
-        if (columnObject.column.id === 'firstName') {
-          // if(columnObject.column.id === 'lastName') {
-          // if(columnObject.column.id === 'departement') {
-          // if(columnObject.column.id === 'firstName' || columnObject.column.id === 'departement') {
-          columnObject.column.setFilterValue(filterValue)
-        }
-      })
-    })
-  }, [table, filterValue])
+  console.log(globalFilter);
+  
 
   return (
     <>
@@ -114,7 +126,7 @@ function Table() {
           value={table.options.state.pagination?.pageSize}
           onChange={(e) => {
             // table.setPageSize(e.target.value)
-            const pageSize = parseInt(e.target.value, 10) 
+            const pageSize = parseInt(e.target.value, 10)
             table.setPageSize(pageSize)
           }}
         >
@@ -129,8 +141,8 @@ function Table() {
 
         <input
           type="text"
-          value={filterValue}
-          onChange={(e) => setFilterValue(e.target.value)}
+          value={globalFilter ?? ''}
+          onChange={(value) => setGlobalFilter(value.target.value)}
           placeholder="firstname filter"
         />
 
@@ -197,4 +209,3 @@ function Table() {
   )
 }
 export default Table
-

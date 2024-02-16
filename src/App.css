@@ -20,3 +20,33 @@ label {
 .address {
   margin-top: 10px;
 }
+
+.modal  {
+  /* background-color: yellow;
+  width: 80%;
+  height: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute; */
+
+  /* background-color: blue; */
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top:20;
+}
+.messageModal {
+background-color: white;
+width: 80%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}

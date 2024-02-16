@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css'
 import fr from 'date-fns/locale/fr'
 
 import Select from 'react-select'
+import Modal from '../components/modal'
 
 function CreateEmployee() {
   const [firstName, setFirstname] = useState('')
@@ -28,6 +29,11 @@ function CreateEmployee() {
   const [state, setState] = useState('')
   const [departement, setDepartement] = useState('')
   const [zipCode, setZipCode] = useState('')
+
+  const [showModal, setShowModal] = useState(false)
+  const isValidForm = () => {
+    return firstName.trim() !== ''
+  }
 
   const dispatch = useDispatch()
   const employeesList = useSelector((state) => state.employees.list)
@@ -49,23 +55,31 @@ function CreateEmployee() {
   ]
 
   function saveEmployee() {
-    const newEmployee = {
-      firstName,
-      lastName,
-      // dateOfBirth,
-      dateFormat: dateOfBirthFormat,
-      // dateOfBirthValueId,
-      // startDate,
-      startDateFormat,
-      departement,
-      street,
-      city,
-      state,
-      zipCode,
+    if (isValidForm()) {
+      const newEmployee = {
+        firstName,
+        lastName,
+        // dateOfBirth,
+        dateFormat: dateOfBirthFormat,
+        // dateOfBirthValueId,
+        // startDate,
+        startDateFormat,
+        departement,
+        street,
+        city,
+        state,
+        zipCode,
+      }
+      dispatch(addEmployee(newEmployee))
+      console.log(employeesList)
+      setShowModal(true)
+    } else {
+      alert('probleme avec la modal')
     }
-    dispatch(addEmployee(newEmployee))
-    console.log(employeesList)
   }
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     const valueInputDateOfBirth = document.getElementById('date-of-birth')
@@ -200,10 +214,11 @@ function CreateEmployee() {
           />
         </form>
         <button onClick={saveEmployee}>Save</button>
+        {showModal && (
+        <Modal onClose={closeModal} />
+      )}
       </div>
-      <div id="confirmation" className="modal">
-        Employee Created!
-      </div>
+      
     </>
   )
 }
