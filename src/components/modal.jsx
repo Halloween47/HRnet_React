@@ -1,15 +1,23 @@
 import '../App.css'
 
-function Modal({ onClose }) {
-  console.log('bonjour')
+function Modal({ onClose, etat }) {
   return (
     <>
-    <div id="confirmation" className="modal">
+      {etat ? (
+        <div id="confirmation" className="modal">
         <div className='messageModal'>
             <p>Employee Created!</p><br/>
             <button onClick={onClose}>Fermer le modal</button>
         </div>
       </div>
+      ) : (
+        <div id="confirmation" className="modal">
+        <div className='messageModal'>
+            <p>Erreur dans le formulaire</p><br/>
+            <button onClick={onClose}>Fermer le modal</button>
+        </div>
+      </div>
+      )}
     </>
   )
 }

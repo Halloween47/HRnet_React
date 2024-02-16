@@ -16,24 +16,17 @@ function CreateEmployee() {
   const [lastName, setLastname] = useState('')
   const [dateOfBirth, setDateOfBirth] = useState(null)
   const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy') // Format de date par défaut
-  console.log(dateOfBirthFormat)
-
   const [dateOfBirthValueId, setDateOfBirthValueId] = useState('')
-  console.log(dateOfBirthValueId)
-  // const [startDate, setStartDate] = useState('')
   const [startDate, setStartDate] = useState(null)
   const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy') // Format de date par défaut
-  console.log(startDateFormat)
   const [street, setStreet] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
   const [departement, setDepartement] = useState('')
   const [zipCode, setZipCode] = useState('')
-
   const [showModal, setShowModal] = useState(false)
-  const isValidForm = () => {
-    return firstName.trim() !== ''
-  }
+  const [etatModal, setEtatModal] = useState(null);
+  const [isValidForm, setIsValidForm] = useState(false)
 
   const dispatch = useDispatch()
   const employeesList = useSelector((state) => state.employees.list)
@@ -54,29 +47,7 @@ function CreateEmployee() {
     { value: 'legal', label: 'Legal' },
   ]
 
-  function saveEmployee() {
-    if (isValidForm()) {
-      const newEmployee = {
-        firstName,
-        lastName,
-        // dateOfBirth,
-        dateFormat: dateOfBirthFormat,
-        // dateOfBirthValueId,
-        // startDate,
-        startDateFormat,
-        departement,
-        street,
-        city,
-        state,
-        zipCode,
-      }
-      dispatch(addEmployee(newEmployee))
-      console.log(employeesList)
-      setShowModal(true)
-    } else {
-      alert('probleme avec la modal')
-    }
-  }
+  
   const closeModal = () => {
     setShowModal(false);
   };
@@ -121,6 +92,91 @@ function CreateEmployee() {
     // setDateFormat(formattedDate);
     setStartDateFormat(formattedDate)
   }
+/*
+  const verifForm = () => {
+    // return firstName.trim() !== ''
+    if(firstName.trim() !== '' 
+    && lastName.trim() !== '' 
+    && dateOfBirthFormat !== 'dd MMMM yyyy' 
+    && startDateFormat !== "dd MMMM yyyy"
+    &&  street.trim() !== ''
+    && city.trim()
+    && state !== ''
+    && zipCode !== ''
+    && departement !== ''){
+
+      console.log('formulaire OK');
+      setIsValidForm(true)
+    } else {
+      console.log('formulaire INVALIDE');
+      setIsValidForm(false)
+    }
+  }
+  function saveEmployee() {
+    verifForm()
+    if (isValidForm) {
+      // const newEmployee = {
+      //   firstName,
+      //   lastName,
+      //   // dateOfBirth,
+      //   dateFormat: dateOfBirthFormat,
+      //   // dateOfBirthValueId,
+      //   // startDate,
+      //   startDateFormat,
+      //   departement,
+      //   street,
+      //   city,
+      //   state,
+      //   zipCode,
+      // }
+      // dispatch(addEmployee(newEmployee))
+      // console.log(employeesList)
+      // setShowModal(true)
+      alert('MODAL OK')
+    } else if (isValidForm === false) {
+      alert('probleme avec la modal')
+    }
+  }
+*/
+function saveEmployee() {
+  console.log('ça marche');
+  if(firstName.trim() !== '' 
+    && lastName.trim() !== '' 
+    && dateOfBirthFormat !== 'dd MMMM yyyy' 
+    && startDateFormat !== "dd MMMM yyyy"
+    &&  street.trim() !== ''
+    && city.trim()
+    && state !== ''
+    && zipCode !== ''
+    && departement !== ''){
+
+      console.log('Form OK');
+
+      const newEmployee = {
+        firstName,
+        lastName,
+        // dateOfBirth,
+        dateFormat: dateOfBirthFormat,
+        // dateOfBirthValueId,
+        // startDate,
+        startDateFormat,
+        departement,
+        street,
+        city,
+        state,
+        zipCode,
+      }
+
+      dispatch(addEmployee(newEmployee))
+setShowModal(true)
+setEtatModal(true)
+} else {
+  console.log('Form PAS OK');
+  setShowModal(true)
+  setEtatModal(false)
+
+    }
+}
 
   return (
     <>
@@ -201,13 +257,6 @@ function CreateEmployee() {
             />
           </fieldset>
           <label htmlFor="department">Department</label>
-          {/* <select name="department" id="department">
-            <option>Sales</option>
-            <option>Marketing</option>
-            <option>Engineering</option>
-            <option>Human Resources</option>
-            <option>Legal</option>
-          </select> */}
           <Select
             options={optionsDepartements}
             onChange={handleChangeSelectDepartement}
@@ -215,7 +264,7 @@ function CreateEmployee() {
         </form>
         <button onClick={saveEmployee}>Save</button>
         {showModal && (
-        <Modal onClose={closeModal} />
+        <Modal onClose={closeModal} etat={etatModal} />
       )}
       </div>
       
