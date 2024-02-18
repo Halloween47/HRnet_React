@@ -89,8 +89,7 @@ function Table() {
   const [sorting, setSorting] = React.useState<any>([])
 
   const columns = React.useMemo<ColumnDef<Person>[]>(
-    () => 
-    [
+    () => [
       {
         header: 'First Name',
         accessorKey: 'firstName',
@@ -138,7 +137,9 @@ function Table() {
         accessorKey: 'zipCode',
         Footer: (info) => info.column.id,
       },
-    ],[]) 
+    ],
+    [],
+  )
 
   const table = useReactTable({
     data,
@@ -201,10 +202,10 @@ function Table() {
                       <div>
                         {flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                         {
-                        { asc: ' 🔼', desc: '🔽',}[
+                          { asc: ' 🔼', desc: '🔽' }[
                             header.column.getIsSorted()
                           ]
                         }
@@ -256,7 +257,7 @@ function Table() {
         <span className="flex items-center gap-1">
           <div>Page</div>
           <strong>
-            {table.getState().pagination.pageIndex + 1} sur {' '}
+            {table.getState().pagination.pageIndex + 1} sur{' '}
             {table.getPageCount()}
           </strong>
         </span>

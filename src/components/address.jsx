@@ -1,0 +1,19 @@
+import City from './city'
+import State from './state'
+import Street from './street'
+import ZipCode from './zipCode'
+
+function Address() {
+  return (
+    <>
+      <fieldset className="address">
+        <legend>Address</legend>
+        <Street />
+        <City />
+        <State />
+        <ZipCode />
+      </fieldset>
+    </>
+  )
+}
+export default Address
