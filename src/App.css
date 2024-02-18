@@ -21,7 +21,7 @@ label {
   margin-top: 10px;
 }
 
-.modal  {
+.modal {
   /* background-color: yellow;
   width: 80%;
   height: 40%;
@@ -38,11 +38,11 @@ label {
   display: flex;
   justify-content: center;
   align-items: center;
-  top:20;
+  top: 20;
 }
 .messageModal {
-background-color: white;
-width: 80%;
+  background-color: white;
+  width: 80%;
   height: 50%;
   display: flex;
   flex-direction: column;

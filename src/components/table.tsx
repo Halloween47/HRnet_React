@@ -9,6 +9,7 @@ import {
   useReactTable,
   getPaginationRowModel,
   getFilteredRowModel,
+  getSortedRowModel,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -88,32 +89,34 @@ function Table() {
   // const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
   //   // Rank the item
   //   const itemRank = rankItem(row.getValue(columnId), value)
-  
+
   //   // Store the itemRank info
   //   addMeta({
   //     itemRank,
   //   })
-  
+
   //   // Return if the item should be filtered in/out
   //   return itemRank.passed
   // }
-const [filtering, setFiltering] = React.useState('')
-  const table = useReactTable(
-    {
-      data,
-      columns,
-      state: {
-        globalFilter: filtering
-      },
-      getCoreRowModel: getCoreRowModel(),
-      getPaginationRowModel: getPaginationRowModel(),
-      getFilteredRowModel: getFilteredRowModel(),
-      onGlobalFilterChange: setFiltering,
-    }, 
-  )
+  const [filtering, setFiltering] = React.useState('')
+  // const [sorting, setSorting] = React.useState([])
+  const [sorting, setSorting] = React.useState<any>([])
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      globalFilter: filtering,
+      sorting: sorting,
+    },
+    getCoreRowModel: getCoreRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    onGlobalFilterChange: setFiltering,
+    getSortedRowModel: getSortedRowModel(),
+    onSortingChange: setSorting,
+  })
 
-  console.log(globalFilter);
-  
+  console.log(globalFilter)
 
   return (
     <>
@@ -139,10 +142,14 @@ const [filtering, setFiltering] = React.useState('')
         <input
           type="text"
           value={globalFilter ?? ''}
-          onChange={(e) => setGlobalFilter(e.target.value)} 
+          onChange={(e) => setGlobalFilter(e.target.value)}
           placeholder="Recherche par prénom"
         />
-        <input type='text' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
+        <input
+          type="text"
+          value={filtering}
+          onChange={(e) => setFiltering(e.target.value)}
+        />
 
         <br />
         <table>
@@ -150,13 +157,24 @@ const [filtering, setFiltering] = React.useState('')
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
+                  <th
+                    key={header.id}
+                    onClick={header.column.getToggleSortingHandler()}
+                  >
+                    {header.isPlaceholder ? null : (
+                      <div>
+                        {' '}
+                        {flexRender(
                           header.column.columnDef.header,
                           header.getContext(),
                         )}
+                        {{
+                          asc: ' 🔼',
+                          desc: '🔽',
+                        }[header.column.getIsSorted() ?? null]
+                        }
+                      </div>
+                    )}
                   </th>
                 ))}
               </tr>

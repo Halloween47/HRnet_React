@@ -25,7 +25,7 @@ function CreateEmployee() {
   const [departement, setDepartement] = useState('')
   const [zipCode, setZipCode] = useState('')
   const [showModal, setShowModal] = useState(false)
-  const [etatModal, setEtatModal] = useState(null);
+  const [etatModal, setEtatModal] = useState(null)
   const [isValidForm, setIsValidForm] = useState(false)
 
   const dispatch = useDispatch()
@@ -47,10 +47,9 @@ function CreateEmployee() {
     { value: 'legal', label: 'Legal' },
   ]
 
-  
   const closeModal = () => {
-    setShowModal(false);
-  };
+    setShowModal(false)
+  }
 
   useEffect(() => {
     const valueInputDateOfBirth = document.getElementById('date-of-birth')
@@ -93,19 +92,20 @@ function CreateEmployee() {
     setStartDateFormat(formattedDate)
   }
 
-function saveEmployee() {
-  console.log('ça marche');
-  if(firstName.trim() !== '' 
-    && lastName.trim() !== '' 
-    && dateOfBirthFormat !== 'dd MMMM yyyy' 
-    && startDateFormat !== "dd MMMM yyyy"
-    &&  street.trim() !== ''
-    && city.trim()
-    && state !== ''
-    && zipCode !== ''
-    && departement !== ''){
-
-      console.log('Form OK');
+  function saveEmployee() {
+    console.log('ça marche')
+    if (
+      firstName.trim() !== '' &&
+      lastName.trim() !== '' &&
+      dateOfBirthFormat !== 'dd MMMM yyyy' &&
+      startDateFormat !== 'dd MMMM yyyy' &&
+      street.trim() !== '' &&
+      city.trim() &&
+      state !== '' &&
+      zipCode !== '' &&
+      departement !== ''
+    ) {
+      console.log('Form OK')
 
       const newEmployee = {
         firstName,
@@ -123,15 +123,14 @@ function saveEmployee() {
       }
 
       dispatch(addEmployee(newEmployee))
-setShowModal(true)
-setEtatModal(true)
-} else {
-  console.log('Form PAS OK');
-  setShowModal(true)
-  setEtatModal(false)
-
+      setShowModal(true)
+      setEtatModal(true)
+    } else {
+      console.log('Form PAS OK')
+      setShowModal(true)
+      setEtatModal(false)
     }
-}
+  }
 
   return (
     <>
@@ -218,11 +217,8 @@ setEtatModal(true)
           />
         </form>
         <button onClick={saveEmployee}>Save</button>
-        {showModal && (
-        <Modal onClose={closeModal} etat={etatModal} />
-      )}
+        {showModal && <Modal onClose={closeModal} etat={etatModal} />}
       </div>
-      
     </>
   )
 }
