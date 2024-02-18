@@ -9,7 +9,6 @@ import {
   useReactTable,
   getPaginationRowModel,
   getFilteredRowModel,
-  FilterFns,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -98,22 +97,20 @@ function Table() {
   //   // Return if the item should be filtered in/out
   //   return itemRank.passed
   // }
-
-  const table = useReactTable({
-    data,
-    columns,
-    // filterFns: {
-    //   fuzzy: fuzzyFilter,
-    // },
-    state: {
-      globalFilter,
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onGlobalFilterChange: setGlobalFilter,
-    // globalFilterFn: fuzzyFilter,
-  })
+const [filtering, setFiltering] = React.useState('')
+  const table = useReactTable(
+    {
+      data,
+      columns,
+      state: {
+        globalFilter: filtering
+      },
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      onGlobalFilterChange: setFiltering,
+    }, 
+  )
 
   console.log(globalFilter);
   
@@ -142,9 +139,10 @@ function Table() {
         <input
           type="text"
           value={globalFilter ?? ''}
-          onChange={(value) => setGlobalFilter(value.target.value)}
-          placeholder="firstname filter"
+          onChange={(e) => setGlobalFilter(e.target.value)} 
+          placeholder="Recherche par prénom"
         />
+        <input type='text' value={filtering} onChange={(e) => setFiltering(e.target.value)} />
 
         <br />
         <table>

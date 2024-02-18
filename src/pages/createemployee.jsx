@@ -92,52 +92,7 @@ function CreateEmployee() {
     // setDateFormat(formattedDate);
     setStartDateFormat(formattedDate)
   }
-/*
-  const verifForm = () => {
-    // return firstName.trim() !== ''
-    if(firstName.trim() !== '' 
-    && lastName.trim() !== '' 
-    && dateOfBirthFormat !== 'dd MMMM yyyy' 
-    && startDateFormat !== "dd MMMM yyyy"
-    &&  street.trim() !== ''
-    && city.trim()
-    && state !== ''
-    && zipCode !== ''
-    && departement !== ''){
 
-      console.log('formulaire OK');
-      setIsValidForm(true)
-    } else {
-      console.log('formulaire INVALIDE');
-      setIsValidForm(false)
-    }
-  }
-  function saveEmployee() {
-    verifForm()
-    if (isValidForm) {
-      // const newEmployee = {
-      //   firstName,
-      //   lastName,
-      //   // dateOfBirth,
-      //   dateFormat: dateOfBirthFormat,
-      //   // dateOfBirthValueId,
-      //   // startDate,
-      //   startDateFormat,
-      //   departement,
-      //   street,
-      //   city,
-      //   state,
-      //   zipCode,
-      // }
-      // dispatch(addEmployee(newEmployee))
-      // console.log(employeesList)
-      // setShowModal(true)
-      alert('MODAL OK')
-    } else if (isValidForm === false) {
-      alert('probleme avec la modal')
-    }
-  }
-*/
 function saveEmployee() {
   console.log('ça marche');
   if(firstName.trim() !== '' 
