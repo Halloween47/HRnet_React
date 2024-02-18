@@ -73,16 +73,11 @@ const columnHelper = createColumnHelper<Person>()
 //   }),
 // ]
 
-  
-
-
-
 function Table() {
   const employeesList = useSelector((state: AppState) => state.employees.list)
   console.log(employeesList)
 
   const [data, setData] = React.useState(() => [...employeesList])
-  // const [data, setData] = React.useState<Person[]>([]);
   const [globalFilter, setGlobalFilter] = React.useState('')
 
   React.useEffect(() => {
@@ -90,21 +85,7 @@ function Table() {
   }, [employeesList])
 
   const rerender = React.useReducer(() => ({}), {})[1]
-
-  // const fuzzyFilter: FilterFn<any> = (row, columnId, value, addMeta) => {
-  //   // Rank the item
-  //   const itemRank = rankItem(row.getValue(columnId), value)
-
-  //   // Store the itemRank info
-  //   addMeta({
-  //     itemRank,
-  //   })
-
-  //   // Return if the item should be filtered in/out
-  //   return itemRank.passed
-  // }
   const [filtering, setFiltering] = React.useState('')
-  // const [sorting, setSorting] = React.useState([])
   const [sorting, setSorting] = React.useState<any>([])
 
   const columns = React.useMemo<ColumnDef<Person>[]>(
@@ -158,6 +139,7 @@ function Table() {
         Footer: (info) => info.column.id,
       },
     ],[]) 
+
   const table = useReactTable({
     data,
     columns,
@@ -173,8 +155,6 @@ function Table() {
     onSortingChange: setSorting,
   })
 
-  console.log(globalFilter)
-
   return (
     <>
       <br />
@@ -182,7 +162,6 @@ function Table() {
         <select
           value={table.options.state.pagination?.pageSize}
           onChange={(e) => {
-            // table.setPageSize(e.target.value)
             const pageSize = parseInt(e.target.value, 10)
             table.setPageSize(pageSize)
           }}

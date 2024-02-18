@@ -52,9 +52,6 @@ function CreateEmployee() {
   }
 
   useEffect(() => {
-    const valueInputDateOfBirth = document.getElementById('date-of-birth')
-    // console.log(valueInputDateOfBirth.value);
-    // setDateOfBirthValueId(valueInputDateOfBirth.value)
     const valueState = document.getElementsByClassName(
       ' css-1dimb5e-singleValue',
     )
@@ -88,7 +85,6 @@ function CreateEmployee() {
       month: 'long',
       year: 'numeric',
     })
-    // setDateFormat(formattedDate);
     setStartDateFormat(formattedDate)
   }
 
@@ -112,8 +108,6 @@ function CreateEmployee() {
         lastName,
         // dateOfBirth,
         dateFormat: dateOfBirthFormat,
-        // dateOfBirthValueId,
-        // startDate,
         startDateFormat,
         departement,
         street,
@@ -195,7 +189,6 @@ function CreateEmployee() {
             />
 
             <label htmlFor="state">State</label>
-            {/* <select name="state" id="state"></select> */}
             <Select
               options={optionsState}
               id="stateValue"
