@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Select from 'react-select'
+import { addState } from '../store/employees'
 
 function State() {
   const [startDate, setStartDate] = useState(null)
@@ -27,6 +29,9 @@ function State() {
     console.log(selectedOption.value)
     setState(selectedOption.value)
   }
+
+  const dispatch = useDispatch()
+  dispatch(addState(state))
 
   return (
     <>

@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import DatePicker from 'react-datepicker'
+import { useDispatch } from 'react-redux'
+import { addStartDate } from '../store/employees'
 
 function StartDate() {
   const [startDate, setStartDate] = useState(null)
@@ -14,6 +16,9 @@ function StartDate() {
     })
     setStartDateFormat(formattedDate)
   }
+
+  const dispatch = useDispatch()
+  dispatch(addStartDate(startDateFormat))
 
   return (
     <>

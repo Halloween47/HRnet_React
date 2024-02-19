@@ -1,7 +1,13 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addFirstName } from '../store/employees'
 
 function Firstname() {
   const [firstName, setFirstname] = useState('')
+
+  const dispatch = useDispatch()
+  dispatch(addFirstName(firstName))
+
   return (
     <>
       <label htmlFor="first-name">First Name</label>

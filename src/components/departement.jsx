@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Select from 'react-select'
+import { addDepartement } from '../store/employees'
 
 function Departement() {
   const [departement, setDepartement] = useState('')
@@ -15,6 +17,10 @@ function Departement() {
     console.log(selectedOption.value)
     setDepartement(selectedOption.value)
   }
+
+  const dispatch = useDispatch()
+  dispatch(addDepartement(departement))
+
   return (
     <>
       <label htmlFor="department">Department</label>

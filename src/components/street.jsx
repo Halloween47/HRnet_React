@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addStreet } from '../store/employees'
 
 function Street() {
   const [street, setStreet] = useState('')
+
+  const dispatch = useDispatch()
+  dispatch(addStreet(street))
 
   return (
     <>

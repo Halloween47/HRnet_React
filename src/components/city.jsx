@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addCity } from '../store/employees'
 
 function City() {
   const [city, setCity] = useState('')
+
+  const dispatch = useDispatch()
+  dispatch(addCity(city))
 
   return (
     <>

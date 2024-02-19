@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { addZipCode } from '../store/employees'
 
 function ZipCode() {
   const [zipCode, setZipCode] = useState('')
+
+  const dispatch = useDispatch()
+  dispatch(addZipCode(zipCode))
 
   return (
     <>
