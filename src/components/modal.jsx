@@ -1,7 +1,7 @@
 import '../App.css'
 import '../css/modal.css'
-import checkImage from '../assets/check.png';
-import crossImage from '../assets/remove.png';
+import checkImage from '../assets/check.png'
+import crossImage from '../assets/remove.png'
 
 function Modal({ onClose, etat }) {
   return (
@@ -9,7 +9,7 @@ function Modal({ onClose, etat }) {
       {etat ? (
         <div id="confirmation" className="modal">
           <div className="messageModal">
-<img src={checkImage} alt='check' /> 
+            <img src={checkImage} alt="check" />
             <p>Employé ajouté avec succès</p>
             <br />
             <button onClick={onClose}>Fermer le modal</button>
@@ -18,7 +18,7 @@ function Modal({ onClose, etat }) {
       ) : (
         <div id="confirmation" className="modal">
           <div className="messageModal">
-<img src={crossImage} alt='check' /> 
+            <img src={crossImage} alt="check" />
             <p>Erreur dans le formulaire.</p>
             <p>Tous les champs doivent être renseignés.</p>
             <button onClick={onClose}>Fermer</button>

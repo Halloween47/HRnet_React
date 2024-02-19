@@ -32,7 +32,7 @@ function CreateEmployee() {
           </svg>
           <div className="title">
             <h1>HRnet</h1>
-            <Link to="/employeList">View Current Employees</Link>
+            <Link to="/employeList">Voir la liste des employées actuelles</Link>
           </div>
         </div>
         <div className="page-creation-form">

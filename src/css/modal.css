@@ -20,10 +20,11 @@
   border-radius: 20px;
 }
 img {
-  width: 50px; height: auto;
+  width: 50px;
+  height: auto;
 }
 #confirmation button {
-  background: linear-gradient(to right,#196BCA ,#6433E0);
+  background: linear-gradient(to right, #196bca, #6433e0);
   color: white;
   text-decoration: none;
   padding: 10px;
