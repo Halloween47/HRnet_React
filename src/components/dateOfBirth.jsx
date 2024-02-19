@@ -7,7 +7,7 @@ import { addDateOfBirth } from '../store/employees'
 
 function DateOfBirth() {
   const [dateOfBirth, setDateOfBirth] = useState(null)
-  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy') // Format de date par défaut
+  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy')
 
   const handleDateChangeBirth = (date) => {
     setDateOfBirth(date)
@@ -27,7 +27,7 @@ function DateOfBirth() {
     <>
       <label htmlFor="date-of-birth">Date of Birth</label>
       <DatePicker
-        dateFormat={'dd MMMM yyyy dd'}
+        dateFormat={'dd MMMM yyyy'}
         placeholderText="Séléctionnez une date"
         selected={dateOfBirth}
         onChange={handleDateChangeBirth}

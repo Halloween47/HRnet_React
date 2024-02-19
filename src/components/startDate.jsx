@@ -27,7 +27,7 @@ function StartDate() {
         showIcon
         selected={startDate}
         onChange={handleDateChangeStarDate}
-        dateFormat={'dd MMMM yyyy dd'}
+        dateFormat={'dd MMMM yyyy'}
         placeholderText="Séléctionnez une date"
       />
     </>

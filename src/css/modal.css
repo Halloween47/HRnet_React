@@ -1,20 +1,33 @@
 .modal {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-  }
-  .messageModal {
-    background-color: white;
-    width: 80%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-  }
+  background-color: rgba(14, 13, 13, 0.9);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  border-radius: 10px;
+}
+.messageModal {
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+img {
+  width: 50px; height: auto;
+}
+#confirmation button {
+  background: linear-gradient(to right,#196BCA ,#6433E0);
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: none;
+  border: none;
+}

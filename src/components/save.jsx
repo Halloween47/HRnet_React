@@ -42,7 +42,7 @@ function Save() {
   const state = useSelector((state) => state.employees.state)
   const zipCode = useSelector((state) => state.employees.zipCode)
   const departement = useSelector((state) => state.employees.departement)
-  console.log(store);
+  console.log(store)
 
   function saveEmployee() {
     console.log('Bouton SAVE marche')
@@ -85,7 +85,7 @@ function Save() {
 
   return (
     <>
-      <button onClick={saveEmployee}>Save</button>
+      <button onClick={saveEmployee} className='button-save'>Save</button>
       {showModal && <Modal onClose={closeModal} etat={etatModal} />}
     </>
   )
