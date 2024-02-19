@@ -62,9 +62,9 @@ function Save() {
       startDate !== 'dd MMMM yyyy' &&
       street.trim() &&
       city.trim() &&
-        state !== '' &&
-          zipCode !== '' && 
-            departement !== ''
+      state !== '' &&
+      zipCode !== '' &&
+      departement !== ''
       //   firstName.trim() !== '' &&
       //   lastName.trim() !== '' &&
       //   dateOfBirthFormat !== 'dd MMMM yyyy' &&
@@ -80,15 +80,15 @@ function Save() {
       const newEmployee = {
         firstName,
         lastName,
-            dateOfBirth,
+        dateOfBirth,
         //     dateFormat: dateOfBirthFormat,
         //     startDateFormat,
-            departement,
-            street,
-            city,
-            state,
-            zipCode,
-            startDate,
+        departement,
+        street,
+        city,
+        state,
+        zipCode,
+        startDate,
       }
 
       //   dispatch(addEmployee(newEmployee))

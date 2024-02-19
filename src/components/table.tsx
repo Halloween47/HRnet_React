@@ -10,7 +10,6 @@ import {
   getPaginationRowModel,
   getFilteredRowModel,
   getSortedRowModel,
-  ColumnDef,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -20,8 +19,9 @@ import { AppState } from '../store/types'
 type Person = {
   firstName: string
   lastName: string
-  // starDate: number
-  startDateFormat: number
+  startDate: number
+  dateOfBirth: number
+  // startDateFormat: number
   departement: number
   dateFormat: string
   street: string
@@ -31,47 +31,49 @@ type Person = {
 }
 const columnHelper = createColumnHelper<Person>()
 
-// const columns = [
-//   columnHelper.accessor('firstName', {
-//     cell: (info) => info.getValue(),
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor((row) => row.lastName, {
-//     id: 'lastName',
-//     cell: (info) => <i>{info.getValue()}</i>,
-//     header: () => <span>Last Name</span>,
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('startDateFormat', {
-//     header: () => 'Star Date',
-//     cell: (info) => info.renderValue(),
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('departement', {
-//     header: () => <span>Departement</span>,
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('dateFormat', {
-//     header: 'Date of Birth',
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('street', {
-//     header: 'Street',
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('city', {
-//     header: 'City',
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('state', {
-//     header: 'State',
-//     footer: (info) => info.column.id,
-//   }),
-//   columnHelper.accessor('zipCode', {
-//     header: 'Zip Code',
-//     footer: (info) => info.column.id,
-//   }),
-// ]
+const columns = [
+  columnHelper.accessor('firstName', {
+    cell: (info) => info.getValue(),
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor((row) => row.lastName, {
+    id: 'lastName',
+    cell: (info) => <i>{info.getValue()}</i>,
+    header: () => <span>Last Name</span>,
+    footer: (info) => info.column.id,
+  }),
+  // columnHelper.accessor('startDateFormat', {
+  columnHelper.accessor('startDate', {
+    header: () => 'Star Date',
+    cell: (info) => info.renderValue(),
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('departement', {
+    header: () => <span>Departement</span>,
+    footer: (info) => info.column.id,
+  }),
+  // columnHelper.accessor('dateFormat', {
+  columnHelper.accessor('dateOfBirth', {
+    header: 'Date of Birth',
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('street', {
+    header: 'Street',
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('city', {
+    header: 'City',
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('state', {
+    header: 'State',
+    footer: (info) => info.column.id,
+  }),
+  columnHelper.accessor('zipCode', {
+    header: 'Zip Code',
+    footer: (info) => info.column.id,
+  }),
+]
 
 function Table() {
   const employeesList = useSelector((state: AppState) => state.employees.list)
@@ -88,58 +90,59 @@ function Table() {
   const [filtering, setFiltering] = React.useState('')
   const [sorting, setSorting] = React.useState<any>([])
 
-  const columns = React.useMemo<ColumnDef<Person>[]>(
-    () => [
-      {
-        header: 'First Name',
-        accessorKey: 'firstName',
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      },
-      {
-        accessorFn: (row) => row.lastName,
-        id: 'lastName',
-        cell: (info) => info.getValue(),
-        footer: (info) => info.column.id,
-      },
-      {
-        header: 'Star Date',
-        accessorKey: 'startDateFormat',
-        cell: (info) => info.renderValue(),
-        footer: (info) => info.column.id,
-      },
-      {
-        accessorKey: 'departement',
-        Footer: (info) => info.column.id,
-      },
-      {
-        header: 'Date of Birth',
-        accessorKey: 'dateFormat',
-        Footer: (info) => info.column.id,
-      },
-      {
-        header: 'Street',
-        accessorKey: 'street',
-        Footer: (info) => info.column.id,
-      },
-      {
-        header: 'City',
-        accessorKey: 'city',
-        Footer: (info) => info.column.id,
-      },
-      {
-        header: 'State',
-        accessorKey: 'state',
-        Footer: (info) => info.column.id,
-      },
-      {
-        header: 'Zip Code',
-        accessorKey: 'zipCode',
-        Footer: (info) => info.column.id,
-      },
-    ],
-    [],
-  )
+  // const columns = React.useMemo<ColumnDef<Person>[]>(
+  //   () => [
+  //     {
+  //       header: 'First Name',
+  //       accessorKey: 'firstName',
+  //       cell: (info) => info.getValue(),
+  //       footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       accessorFn: (row) => row.lastName,
+  //       id: 'lastName',
+  //       cell: (info) => info.getValue(),
+  //       footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'Star Date',
+  //       // accessorKey: 'startDateFormat',
+  //       accessorKey: 'startDate',
+  //       cell: (info) => info.renderValue(),
+  //       footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       accessorKey: 'departement',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'Date of Birth',
+  //       accessorKey: 'dateFormat',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'Street',
+  //       accessorKey: 'street',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'City',
+  //       accessorKey: 'city',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'State',
+  //       accessorKey: 'state',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //     {
+  //       header: 'Zip Code',
+  //       accessorKey: 'zipCode',
+  //       Footer: (info) => info.column.id,
+  //     },
+  //   ],
+  //   [],
+  // )
 
   const table = useReactTable({
     data,
