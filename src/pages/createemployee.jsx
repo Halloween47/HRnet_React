@@ -8,8 +8,13 @@ import StartDate from '../components/startDate'
 import Address from '../components/address'
 import Departement from '../components/departement'
 import Save from '../components/save'
+import Modal from '../components/modal'
+import { useState } from 'react'
 
 function CreateEmployee() {
+  const [showModal, setShowModal] = useState(false)
+  const [etatModal, setEtatModal] = useState(null)
+  
   return (
     <>
       <div className="page-creation">
@@ -62,6 +67,8 @@ function CreateEmployee() {
               ></path>
             </svg>
         </div>
+        {/* {showModal && <Modal onClose={closeModal} etat={etatModal} />} */}
+
       </div>
     </>
   )

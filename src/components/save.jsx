@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addEmployee } from '../store/employees'
 
-import Modal from '../components/modal'
+import Modal from './modal'
 
 function Save() {
   //     // const [firstName, setFirstname] = useState('');
@@ -42,16 +42,7 @@ function Save() {
   const state = useSelector((state) => state.employees.state)
   const zipCode = useSelector((state) => state.employees.zipCode)
   const departement = useSelector((state) => state.employees.departement)
-  console.log(store)
-  console.log(firstName)
-  console.log(lastName)
-  console.log(dateOfBirth)
-  console.log(startDate)
-  console.log(street)
-  console.log(city)
-  console.log(state)
-  console.log(zipCode)
-  console.log(departement)
+  console.log(store);
 
   function saveEmployee() {
     console.log('Bouton SAVE marche')
@@ -65,24 +56,12 @@ function Save() {
       state !== '' &&
       zipCode !== '' &&
       departement !== ''
-      //   firstName.trim() !== '' &&
-      //   lastName.trim() !== '' &&
-      //   dateOfBirthFormat !== 'dd MMMM yyyy' &&
-      //   startDateFormat !== 'dd MMMM yyyy' &&
-      //   street.trim() !== '' &&
-      //   city.trim() &&
-      //   state !== '' &&
-      //   zipCode !== '' &&
-      //   departement !== ''
     ) {
       console.log('Form OK')
-
       const newEmployee = {
         firstName,
         lastName,
         dateOfBirth,
-        //     dateFormat: dateOfBirthFormat,
-        //     startDateFormat,
         departement,
         street,
         city,
@@ -90,8 +69,6 @@ function Save() {
         zipCode,
         startDate,
       }
-
-      //   dispatch(addEmployee(newEmployee))
       dispatch(addEmployee(newEmployee))
       setShowModal(true)
       setEtatModal(true)
