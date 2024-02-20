@@ -2,13 +2,12 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addEmployee } from '../store/employees'
 
-import Modal from 'my-modal-wh'
-// import Modal from './modal.jsx'
-
+// import Modal from 'my-modal-wh'
+import Modal from './modal.jsx'
 
 function Save() {
-  // const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy') 
-  // const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy') 
+  // const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy')
+  // const [startDateFormat, setStartDateFormat] = useState('dd MMMM yyyy')
 
   const [showModal, setShowModal] = useState(false)
   const [etatModal, setEtatModal] = useState(null)

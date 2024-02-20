@@ -3,7 +3,7 @@ html {
   font-size: 14px;
 }
 #employee-div {
-  background-color: blue;
+  background-color: #2f52e0;
   height: 100vh;
   margin: 0;
   display: flex;
@@ -13,12 +13,43 @@ html {
 }
 h1 {
   margin: 0;
+  color: white;
+  text-align: center;
 }
-
+.table-container {
+  background-color: #1b39b1;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 2px 1px 1px 2px;
+  position: relative;
+}
+#show {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  padding: 10px;
+}
+#table-filtre {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* left: 10; */
+  margin: 20px;
+  padding: 10px;
+}
+#employee-div a {
+  color: white;
+  margin: 20px 2px;
+}
 table {
   border: 1px solid lightgray;
+  background-color: white;
 }
-
+#page-count {
+  color: white;
+  display: flex;
+}
 tbody {
   border-bottom: 1px solid lightgray;
 }
@@ -35,4 +66,21 @@ tfoot {
 
 tfoot th {
   font-weight: normal;
+}
+#zone-next_previous {
+  display: flex;
+  margin: 20px 0px 20px 0px;
+  position: relative;
+}
+.zone_button-next-previous {
+  display: flex;
+  /* background-color: red; */
+  position: absolute;
+  right: 0;
+}
+.zone_button-next-previous button:first-child {
+  margin-right: 20px;
+}
+.zone_button-next-previous button {
+  padding: 5px;
 }

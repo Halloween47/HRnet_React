@@ -1,1 +1,1 @@
-declare module 'my-modal-wh';
+declare module 'my-modal-wh'

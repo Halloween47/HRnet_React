@@ -11,7 +11,6 @@ import Save from '../components/save'
 import { useState } from 'react'
 
 function CreateEmployee() {
-
   return (
     <>
       <div className="page-creation">

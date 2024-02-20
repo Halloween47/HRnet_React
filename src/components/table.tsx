@@ -160,10 +160,11 @@ function Table() {
   })
 
   return (
-    <>
+    <div className="table-container">
       <br />
-      <div className="p-2">
+      <div className="p-2" id="table-content">
         <select
+          id="show"
           value={table.options.state.pagination?.pageSize}
           onChange={(e) => {
             const pageSize = parseInt(e.target.value, 10)
@@ -181,14 +182,10 @@ function Table() {
 
         <input
           type="text"
-          value={globalFilter ?? ''}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-          placeholder="Recherche par prénom"
-        />
-        <input
-          type="text"
           value={filtering}
           onChange={(e) => setFiltering(e.target.value)}
+          id="table-filtre"
+          placeholder="Recherche"
         />
 
         <br />
@@ -253,22 +250,25 @@ function Table() {
           </tfoot>
         </table>
         <div className="h-4" />
-        <button onClick={() => rerender()} className="border p-2">
-          Rerender
-        </button>
+        <div id="zone-next_previous">
+          {/* <button onClick={() => rerender()} className="border p-2">
+            Rerender
+          </button> */}
 
-        <span className="flex items-center gap-1">
-          <div>Page</div>
-          <strong>
-            {table.getState().pagination.pageIndex + 1} sur{' '}
-            {table.getPageCount()}
-          </strong>
-        </span>
-
-        <button onClick={() => table.previousPage()}>Précédent</button>
-        <button onClick={() => table.nextPage()}>Suivant</button>
+          <span className="flex items-center gap-1" id="page-count">
+            <div>Page</div>
+            <strong>
+              {table.getState().pagination.pageIndex + 1} sur{' '}
+              {table.getPageCount()}
+            </strong>
+          </span>
+          <div className="zone_button-next-previous">
+            <button onClick={() => table.previousPage()}>Précédent</button>
+            <button onClick={() => table.nextPage()}>Suivant</button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 export default Table

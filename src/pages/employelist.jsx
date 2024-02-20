@@ -5,8 +5,11 @@ function EmployeList() {
   return (
     <>
       <div id="employee-div" className="container">
-        <h1>Current Employees</h1>
-        <Link to="/">Home</Link>
+        <h1>
+          Employées actuellement
+          <br /> en poste
+        </h1>
+        <Link to="/">Retour page d'accueil</Link>
         <Table />
       </div>
     </>
