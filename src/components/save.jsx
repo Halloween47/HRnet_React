@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addEmployee } from '../store/employees'
 
-import Modal from './modal'
+// import Modal from './modal'
+// import Modal from 'my-modal-plugin'
+import { Modal } from 'wealth-health-modal';
+// import  Modal  from 'wealth-health-modal';
 
 function Save() {
   //     // const [firstName, setFirstname] = useState('');
@@ -88,7 +91,8 @@ function Save() {
       <button onClick={saveEmployee} className="button-save">
         Save
       </button>
-      {showModal && <Modal onClose={closeModal} etat={etatModal} />}
+      {/* {showModal && <Modal onClose={closeModal} etat={etatModal} />} */}
+      <Modal />
     </>
   )
 }
