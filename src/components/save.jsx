@@ -2,7 +2,8 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addEmployee } from '../store/employees'
 
-// import Modal from 'my-modal-wh'
+import Modal from 'my-modal-wh'
+// import Modal from './modal.jsx'
 
 
 function Save() {
@@ -60,17 +61,17 @@ function Save() {
     }
   }
 
-  // const closeModal = () => {
-  //   setShowModal(false)
-  // }
+  const closeModal = () => {
+    setShowModal(false)
+  }
 
   return (
     <>
       <button onClick={saveEmployee} className="button-save">
         Save
       </button>
-      {/* {showModal && <Modal onClose={closeModal} etat={etatModal} />} */}
-      
+      {showModal && <Modal onClose={closeModal} etat={etatModal} />}
+      {/* <Modal /> */}
     </>
   )
 }
