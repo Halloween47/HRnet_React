@@ -256,7 +256,7 @@ function Table() {
           </button> */}
 
           <span className="flex items-center gap-1" id="page-count">
-            <div>Page</div>
+            <div>Page </div>
             <strong>
               {table.getState().pagination.pageIndex + 1} sur{' '}
               {table.getPageCount()}
