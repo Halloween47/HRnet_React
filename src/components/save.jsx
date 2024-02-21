@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addEmployee } from '../store/employees'
 
 // import Modal from 'my-modal-wh'
-import Modal from './modal.jsx'
+// import Modal from './modal.jsx'
+import {Modal} from 'oc-wh-modal'
 
 function Save() {
   // const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy')
@@ -69,8 +70,8 @@ function Save() {
       <button onClick={saveEmployee} className="button-save">
         Save
       </button>
+      
       {showModal && <Modal onClose={closeModal} etat={etatModal} />}
-      {/* <Modal /> */}
     </>
   )
 }

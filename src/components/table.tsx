@@ -205,9 +205,9 @@ function Table() {
                           header.getContext(),
                         )}
                         {
-                          { asc: ' 🔼', desc: '🔽' }[
-                            header.column.getIsSorted()
-                          ]
+                          // { asc: ' 🔼', desc: '🔽' }[
+                          //   header.column.getIsSorted()
+                          // ]
                         }
                       </div>
                     )}
