@@ -10,6 +10,8 @@ import {
   getPaginationRowModel,
   getFilteredRowModel,
   getSortedRowModel,
+  SortingFn,
+  sortingFns,
 } from '@tanstack/react-table'
 
 import { useSelector } from 'react-redux'
@@ -30,6 +32,9 @@ type Person = {
   zipCode: number
 }
 const columnHelper = createColumnHelper<Person>()
+
+
+
 
 const columns = [
   columnHelper.accessor('firstName', {
@@ -73,8 +78,24 @@ const columns = [
   columnHelper.accessor('zipCode', {
     header: 'Zip Code',
     footer: (info) => info.column.id,
+    // sortingFn: fuzzySort
   }),
 ]
+
+// const fuzzySort: SortingFn<any> = (rowA, rowB, columnId) => {
+//   let dir = 0
+
+//   // Only sort by rank if the column has ranking information
+//   if (rowA.columnFiltersMeta[columnId]) {
+//     dir = compareItems(
+//       rowA.columnFiltersMeta[columnId]?.itemRank!,
+//       rowB.columnFiltersMeta[columnId]?.itemRank!
+//     )
+//   }
+
+//   // Provide an alphanumeric fallback for when the item ranks are equal
+//   return dir === 0 ? sortingFns.alphanumeric(rowA, rowB, columnId) : dir
+// }
 
 function Table() {
   const employeesList = useSelector((state: AppState) => state.employees.list)
@@ -91,60 +112,6 @@ function Table() {
   const [filtering, setFiltering] = React.useState('')
   const [sorting, setSorting] = React.useState<any>([])
 
-  // const columns = React.useMemo<ColumnDef<Person>[]>(
-  //   () => [
-  //     {
-  //       header: 'First Name',
-  //       accessorKey: 'firstName',
-  //       cell: (info) => info.getValue(),
-  //       footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       accessorFn: (row) => row.lastName,
-  //       id: 'lastName',
-  //       cell: (info) => info.getValue(),
-  //       footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'Star Date',
-  //       // accessorKey: 'startDateFormat',
-  //       accessorKey: 'startDate',
-  //       cell: (info) => info.renderValue(),
-  //       footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       accessorKey: 'departement',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'Date of Birth',
-  //       accessorKey: 'dateFormat',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'Street',
-  //       accessorKey: 'street',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'City',
-  //       accessorKey: 'city',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'State',
-  //       accessorKey: 'state',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //     {
-  //       header: 'Zip Code',
-  //       accessorKey: 'zipCode',
-  //       Footer: (info) => info.column.id,
-  //     },
-  //   ],
-  //   [],
-  // )
-
   const table = useReactTable({
     data,
     columns,
@@ -160,6 +127,8 @@ function Table() {
     onSortingChange: setSorting,
   })
 
+
+  
   return (
     <div className="table-container">
       <br />
@@ -191,48 +160,62 @@ function Table() {
 
         <br />
         <table>
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    onClick={header.column.getToggleSortingHandler()}
-                  >
+        <thead>
+          {table.getHeaderGroups().map(headerGroup => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map(header => {
+                return (
+                  <th key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
-                      <div>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                        {
-                          // { asc: ' 🔼', desc: '🔽' }[
-                          //   header.column.getIsSorted()
-                          // ]
-                        }
-                      </div>
+                      <>
+                        <div
+                          {...{
+                            className: header.column.getCanSort()
+                              ? 'cursor-pointer select-none'
+                              : '',
+                            onClick: header.column.getToggleSortingHandler(),
+                          }}
+                        >
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                          {{
+                            asc: ' 🔼',
+                            desc: ' 🔽',
+                          }[header.column.getIsSorted() as string] ?? null}
+                        </div>
+                        {header.column.getCanFilter() ? (
+                          <div>
+                            {/* <Filter column={header.column} table={table} /> */}
+                          </div>
+                        ) : null}
+                      </>
                     )}
                   </th>
-                ))}
+                )
+              })}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map(row => {
+            return (
+              <tr key={row.id}>
+                {row.getVisibleCells().map(cell => {
+                  return (
+                    <td key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </td>
+                  )
+                })}
               </tr>
-            ))}
-          </thead>
-          <tbody>
-            {data.length !== 0
-              ? table.getRowModel().rows.map((row) => (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              : 'No data available'}
-          </tbody>
+            )
+          })}
+        </tbody>
           <tfoot>
             {table.getFooterGroups().map((footerGroup) => (
               <tr key={footerGroup.id}>
@@ -273,3 +256,7 @@ function Table() {
   )
 }
 export default Table
+function compareItems(arg0: any, arg1: any): number {
+  throw new Error('Function not implemented.')
+}
+

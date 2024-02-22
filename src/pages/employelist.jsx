@@ -1,5 +1,8 @@
 import { Link } from 'react-router-dom'
-import Table from '../components/table.tsx'
+import '../css/employelist.css'
+import Table from '../components/dataTable'
+
+// import Table from '../components/table.tsx'
 
 function EmployeList() {
   return (
