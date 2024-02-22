@@ -23,7 +23,7 @@ function Departement() {
 
   return (
     <>
-      <label htmlFor="department">Department</label>
+      <label htmlFor="department">Departement :</label>
       <Select
         options={optionsDepartements}
         onChange={handleChangeSelectDepartement}

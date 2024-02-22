@@ -33,7 +33,7 @@ function CreateEmployee() {
         </div>
         <div className="page-creation-form">
           <div className="page-creation-form-container">
-            <h2>Create Employee</h2>
+            <h2>Enregistrer un nouvel employé</h2>
             <form action="#" id="create-employee">
               <div className="form-partie-1">
                 <Firstname />

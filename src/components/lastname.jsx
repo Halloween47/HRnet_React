@@ -11,7 +11,7 @@ function Lastname() {
 
   return (
     <>
-      <label htmlFor="last-name">Last Name</label>
+      <label htmlFor="last-name">Nom</label>
       <input
         type="text"
         value={lastName}

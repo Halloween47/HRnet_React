@@ -10,7 +10,7 @@ function Street() {
 
   return (
     <>
-      <label htmlFor="street">Street</label>
+      <label htmlFor="street">Rue</label>
       <input
         id="street"
         value={street}

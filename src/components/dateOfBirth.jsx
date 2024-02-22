@@ -25,7 +25,7 @@ function DateOfBirth() {
 
   return (
     <>
-      <label htmlFor="date-of-birth">Date of Birth</label>
+      <label htmlFor="date-of-birth">Date de naissance</label>
       <DatePicker
         dateFormat={'dd MMMM yyyy'}
         placeholderText="Séléctionnez une date"

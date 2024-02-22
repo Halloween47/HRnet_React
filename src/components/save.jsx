@@ -68,7 +68,7 @@ function Save() {
   return (
     <>
       <button onClick={saveEmployee} className="button-save">
-        Save
+        Enregistrer
       </button>
       
       {showModal && <Modal onClose={closeModal} etat={etatModal} />}

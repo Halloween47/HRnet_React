@@ -35,7 +35,7 @@ function State() {
 
   return (
     <>
-      <label htmlFor="state">State</label>
+      <label htmlFor="state">Etat</label>
       <Select
         options={optionsState}
         id="stateValue"

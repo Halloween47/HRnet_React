@@ -10,7 +10,7 @@ function City() {
 
   return (
     <>
-      <label htmlFor="city">City</label>
+      <label htmlFor="city">Ville</label>
       <input
         id="city"
         value={city}

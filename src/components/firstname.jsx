@@ -10,7 +10,7 @@ function Firstname() {
 
   return (
     <>
-      <label htmlFor="first-name">First Name</label>
+      <label htmlFor="first-name">Prénom</label>
       <input
         type="text"
         value={firstName}

@@ -7,7 +7,7 @@ function Address() {
   return (
     <>
       <fieldset className="address">
-        <legend>Address</legend>
+        <legend>Adresse</legend>
         <Street />
         <City />
         <State />

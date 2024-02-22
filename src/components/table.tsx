@@ -34,17 +34,18 @@ const columnHelper = createColumnHelper<Person>()
 const columns = [
   columnHelper.accessor('firstName', {
     cell: (info) => info.getValue(),
+    header: () => <span>Prénom</span>,
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor((row) => row.lastName, {
     id: 'lastName',
     cell: (info) => <i>{info.getValue()}</i>,
-    header: () => <span>Last Name</span>,
+    header: () => <span>Nom</span>,
     footer: (info) => info.column.id,
   }),
   // columnHelper.accessor('startDateFormat', {
   columnHelper.accessor('startDate', {
-    header: () => 'Star Date',
+    header: () => 'Date de début',
     cell: (info) => info.renderValue(),
     footer: (info) => info.column.id,
   }),
@@ -54,19 +55,19 @@ const columns = [
   }),
   // columnHelper.accessor('dateFormat', {
   columnHelper.accessor('dateOfBirth', {
-    header: 'Date of Birth',
+    header: 'Date de naissance',
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('street', {
-    header: 'Street',
+    header: 'Rue',
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('city', {
-    header: 'City',
+    header: 'Ville',
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('state', {
-    header: 'State',
+    header: 'Etat',
     footer: (info) => info.column.id,
   }),
   columnHelper.accessor('zipCode', {
@@ -174,7 +175,7 @@ function Table() {
           {[1, 2, 3, 10, 25, 50].map((pageSizeEl) => {
             return (
               <option key={pageSizeEl} value={pageSizeEl}>
-                Show {pageSizeEl}
+                Nombre par page : {pageSizeEl}
               </option>
             )
           })}

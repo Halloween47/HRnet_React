@@ -22,7 +22,7 @@ function StartDate() {
 
   return (
     <>
-      <label htmlFor="start-date">Start Date</label>
+      <label htmlFor="start-date">date de début</label>
       <DatePicker
         showIcon
         selected={startDate}
