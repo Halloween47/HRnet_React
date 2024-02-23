@@ -4,7 +4,7 @@ import Table from '../components/dataTable'
 
 function EmployeList() {
   return (
-    <div className='page_employe-list'>
+    <div className="page_employe-list">
       <div id="employee-div" className="container">
         <h1>
           Employées actuellement

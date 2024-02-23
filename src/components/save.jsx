@@ -5,34 +5,35 @@ import { addEmployee } from '../store/employees'
 // import Modal from './modal.jsx'
 import { Modal } from 'oc-wh-modal'
 
-function Save() {
-
+function Save({
+  firstName,
+  lastName,
+  dateOfBirthFormat,
+  startDateFormat,
+  state,
+  street,
+  city,
+  zipCode,
+  departement,
+}) {
   const [showModal, setShowModal] = useState(false)
   const [etatModal, setEtatModal] = useState(null)
 
   const dispatch = useDispatch()
   const store = useSelector((state) => state.employees)
-  const firstName = useSelector((state) => state.employees.firstname)
-  const lastName = useSelector((state) => state.employees.lastname)
-  const dateOfBirth = useSelector((state) => state.employees.dateOfBirth)
-  const startDate = useSelector((state) => state.employees.startDate)
-  const street = useSelector((state) => state.employees.street)
-  const city = useSelector((state) => state.employees.city)
-  const state = useSelector((state) => state.employees.state)
-  const zipCode = useSelector((state) => state.employees.zipCode)
-  const departement = useSelector((state) => state.employees.departement)
-  console.log(store)
 
   function saveEmployee() {
     console.log('Bouton SAVE marche')
+    console.log(firstName)
+    console.log(dateOfBirthFormat)
     if (
       firstName.trim() !== '' &&
       lastName.trim() !== '' &&
-      dateOfBirth !== 'dd MMMM yyyy' &&
-      startDate !== 'dd MMMM yyyy' &&
-      street.trim() &&
-      city.trim() &&
+      dateOfBirthFormat !== '' &&
+      startDateFormat !== '' &&
       state !== '' &&
+      street !== '' &&
+      city !== '' &&
       zipCode !== '' &&
       departement !== ''
     ) {
@@ -40,15 +41,16 @@ function Save() {
       const newEmployee = {
         firstName,
         lastName,
-        dateOfBirth,
-        departement,
+        dateOfBirthFormat,
+        startDateFormat,
+        state,
         street,
         city,
-        state,
         zipCode,
-        startDate,
+        departement,
       }
       dispatch(addEmployee(newEmployee))
+      console.log(store)
       setShowModal(true)
       setEtatModal(true)
     } else {

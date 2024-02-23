@@ -8,8 +8,19 @@ import StartDate from '../components/startDate'
 import Address from '../components/address'
 import Departement from '../components/departement'
 import Save from '../components/save'
+import { useState } from 'react'
 
 function CreateEmployee() {
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('')
+  const [startDateFormat, setStartDateFormat] = useState('')
+  const [state, setState] = useState('')
+  const [street, setStreet] = useState('')
+  const [city, setCity] = useState('')
+  const [departement, setDepartement] = useState('')
+  const [zipCode, setZipCode] = useState('')
+  console.log(firstName)
   return (
     <>
       <div className="page-creation">
@@ -35,18 +46,33 @@ function CreateEmployee() {
             <h2>Enregistrer un nouvel employé</h2>
             <form action="#" id="create-employee">
               <div className="form-partie-1">
-                <Firstname />
-                <Lastname />
-                <DateOfBirth />
-                <StartDate />
-                <Departement />
+                <Firstname setFirstName={setFirstName} />
+                <Lastname setLastName={setLastName} />
+                <DateOfBirth setDateOfBirthFormat={setDateOfBirthFormat} />
+                <StartDate setStartDateFormat={setStartDateFormat} />
+                <Departement setDepartement={setDepartement} />
               </div>
               <div className="form-partie-2">
-                <Address />
+                <Address
+                  setState={setState}
+                  setStreet={setStreet}
+                  setCity={setCity}
+                  setZipCode={setZipCode}
+                />
               </div>
             </form>
             <div className="form-partie-save">
-              <Save />
+              <Save
+                firstName={firstName}
+                lastName={lastName}
+                dateOfBirthFormat={dateOfBirthFormat}
+                startDateFormat={startDateFormat}
+                state={state}
+                street={street}
+                city={city}
+                departement={departement}
+                zipCode={zipCode}
+              />
             </div>
           </div>
           <svg

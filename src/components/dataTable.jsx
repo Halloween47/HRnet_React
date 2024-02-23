@@ -60,7 +60,7 @@ const columns = [
   },
   {
     name: 'Date de début',
-    selector: (row) => row.startDate,
+    selector: (row) => row.startDateFormat,
     sortable: true,
   },
   {
@@ -70,7 +70,7 @@ const columns = [
   },
   {
     name: 'Date de naissance',
-    selector: (row) => row.dateOfBirth,
+    selector: (row) => row.dateOfBirthFormat,
     sortable: true,
   },
   {
@@ -107,7 +107,8 @@ function Table() {
   }, [employeesList])
 
   const [filterText, setFilterText] = React.useState('')
-  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
+  const [resetPaginationToggle, setResetPaginationToggle] =
+    React.useState(false)
 
   // const filteredItems = dataMocked.filter(
   const filteredItems = data.filter(

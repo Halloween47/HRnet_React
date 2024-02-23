@@ -1,23 +1,13 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-
-import { addLastName } from '../store/employees'
-
-function Lastname() {
-  const [lastName, setLastname] = useState('')
-
-  const dispatch = useDispatch()
-  dispatch(addLastName(lastName))
+function Lastname({ setLastName }) {
+  const handleInputChange = (e) => {
+    const value = e.target.value
+    setLastName(value)
+  }
 
   return (
     <>
       <label htmlFor="last-name">Nom</label>
-      <input
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastname(e.target.value)}
-        id="last-name"
-      />
+      <input type="text" onChange={handleInputChange} id="last-name" />
     </>
   )
 }

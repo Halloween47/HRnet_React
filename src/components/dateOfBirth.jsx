@@ -2,12 +2,9 @@ import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 
 import fr from 'date-fns/locale/fr'
-import { useDispatch } from 'react-redux'
-import { addDateOfBirth } from '../store/employees'
 
-function DateOfBirth() {
+function DateOfBirth({ setDateOfBirthFormat }) {
   const [dateOfBirth, setDateOfBirth] = useState(null)
-  const [dateOfBirthFormat, setDateOfBirthFormat] = useState('dd MMMM yyyy')
 
   const handleDateChangeBirth = (date) => {
     setDateOfBirth(date)
@@ -18,9 +15,6 @@ function DateOfBirth() {
     })
     setDateOfBirthFormat(formattedDate)
   }
-
-  const dispatch = useDispatch()
-  dispatch(addDateOfBirth(dateOfBirthFormat))
 
   return (
     <>

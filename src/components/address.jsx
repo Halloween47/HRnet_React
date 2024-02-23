@@ -3,15 +3,15 @@ import State from './state'
 import Street from './street'
 import ZipCode from './zipCode'
 
-function Address() {
+function Address({ setState, setStreet, setCity, setZipCode }) {
   return (
     <>
       <fieldset className="address">
         <legend>Adresse</legend>
-        <Street />
-        <City />
-        <State />
-        <ZipCode />
+        <Street setStreet={setStreet} />
+        <City setCity={setCity} />
+        <State setState={setState} />
+        <ZipCode setZipCode={setZipCode} />
       </fieldset>
     </>
   )
