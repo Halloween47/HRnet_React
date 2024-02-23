@@ -1,8 +1,7 @@
 import React from 'react'
 import DataTable from 'react-data-table-component'
 import { useSelector } from 'react-redux'
-import GlobalFilter from './filterGlobal'
-import DataMocked, { dataMocked } from '../datas/datasMocked'
+import { dataMocked } from '../datas/datasMocked'
 import styled from 'styled-components'
 
 const TextField = styled.input`
@@ -110,8 +109,8 @@ function Table() {
   const [filterText, setFilterText] = React.useState('')
   const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
 
-  const filteredItems = dataMocked.filter(
-  // const filteredItems = data.filter(
+  // const filteredItems = dataMocked.filter(
+  const filteredItems = data.filter(
     (item) =>
       (item.firstName &&
         item.firstName.toLowerCase().includes(filterText.toLowerCase())) ||
@@ -150,7 +149,7 @@ function Table() {
   }, [filterText, resetPaginationToggle])
 
   return (
-    <div  className="table-container">
+    <div className="table-container">
       <DataTable
         columns={columns}
         data={filteredItems}

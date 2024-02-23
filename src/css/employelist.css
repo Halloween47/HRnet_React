@@ -3,6 +3,11 @@ html {
   font-size: 14px;
   background-color: #2f52e0;
 }
+.page_employe-list {
+  background-color: #2f52e0;
+width: 100%;
+
+}
 #employee-div {
   background-color: #2f52e0;
   /* height: 100vh; */
