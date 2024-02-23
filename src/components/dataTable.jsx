@@ -1,6 +1,7 @@
 import React from 'react'
 import DataTable from 'react-data-table-component'
 import { useSelector } from 'react-redux'
+// eslint-disable-next-line no-unused-vars
 import { dataMocked } from '../datas/datasMocked'
 import styled from 'styled-components'
 
