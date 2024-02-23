@@ -40,7 +40,7 @@ const FilterComponent = ({ filterText, onFilter, onClear }) => (
 		<TextField
 			id="search"
 			type="text"
-			placeholder="Filtrer par Prénom"
+			placeholder="Recherche ..."
 			aria-label="Search Input"
 			value={filterText}
 			onChange={onFilter}
@@ -114,9 +114,23 @@ function Table() {
 /////////////////////////////////////////
 const [filterText, setFilterText] = React.useState('');
 	const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false);
-	const filteredItems = dataMocked.filter(
-		item => item.firstName && item.firstName.toLowerCase().includes(filterText.toLowerCase()),
+  const filteredItems = dataMocked.filter(
+    item => 
+      (item.firstName && item.firstName.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.lastName && item.lastName.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.department && item.department.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.city && item.city.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.state && item.state.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.street && item.street.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.dateOfBirth && item.dateOfBirth.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.startDate && item.startDate.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.zipCode && item.zipCode.toLowerCase().includes(filterText.toLowerCase()))
   );
+  
+  
+  
+  
+  
 const subHeaderComponentMemo = React.useMemo(() => {
   const handleClear = () => {
     if (filterText) {
