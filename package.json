@@ -4,11 +4,9 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
-    "@tanstack/react-table": "^8.12.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "my-modal-wh": "^1.0.7",
     "oc-wh-modal": "^0.0.4",
     "react": "^18.2.0",
     "react-data-table-component": "^7.6.2",

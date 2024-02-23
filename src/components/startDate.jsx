@@ -2,6 +2,8 @@ import { useState } from 'react'
 import DatePicker from 'react-datepicker'
 import { useDispatch } from 'react-redux'
 import { addStartDate } from '../store/employees'
+import fr from 'date-fns/locale/fr'
+
 
 function StartDate() {
   const [startDate, setStartDate] = useState(null)
@@ -29,6 +31,8 @@ function StartDate() {
         onChange={handleDateChangeStarDate}
         dateFormat={'dd MMMM yyyy'}
         placeholderText="Séléctionnez une date"
+        locale={fr}
+
       />
     </>
   )
