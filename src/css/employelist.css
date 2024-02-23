@@ -20,9 +20,9 @@ h1 {
 .table-container {
   background-color: #1b39b1;
   padding: 40px;
-  border-radius: 10px;
   box-shadow: 2px 1px 1px 2px;
   position: relative;
+  margin-bottom: 20px;
 }
 #show {
   position: absolute;
