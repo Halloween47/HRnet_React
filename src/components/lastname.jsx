@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { addEmployee, addLastName } from '../store/employees'
+import { addLastName } from '../store/employees'
 
 function Lastname() {
   const [lastName, setLastname] = useState('')

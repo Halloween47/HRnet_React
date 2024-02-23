@@ -66,7 +66,6 @@ const columns = [
   },
   {
     name: 'Département',
-    // selector: row => row.departement,
     selector: (row) => row.departement,
     sortable: true,
   },
@@ -154,8 +153,6 @@ function Table() {
     <div  className="table-container">
       <DataTable
         columns={columns}
-        // data={data}
-        // data={dataMocked}
         data={filteredItems}
         pagination
         subHeader

@@ -20,7 +20,6 @@ function DateOfBirth() {
   }
 
   const dispatch = useDispatch()
-  // dispatch(addEmployee(firstName))
   dispatch(addDateOfBirth(dateOfBirthFormat))
 
   return (

@@ -8,7 +8,6 @@ import StartDate from '../components/startDate'
 import Address from '../components/address'
 import Departement from '../components/departement'
 import Save from '../components/save'
-import { useState } from 'react'
 
 function CreateEmployee() {
   return (
