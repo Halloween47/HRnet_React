@@ -20,7 +20,6 @@ const TextField = styled.input`
     cursor: pointer;
   }
 `
-
 const ClearButton = styled.button`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -33,7 +32,6 @@ const ClearButton = styled.button`
   align-items: center;
   justify-content: center;
 `
-
 const FilterComponent = ({ filterText, onFilter, onClear }) => (
   <>
     <TextField
@@ -69,7 +67,7 @@ const columns = [
   {
     name: 'Département',
     // selector: row => row.departement,
-    selector: (row) => row.department,
+    selector: (row) => row.departement,
     sortable: true,
   },
   {
@@ -102,22 +100,26 @@ const columns = [
 function Table() {
   const employeesList = useSelector((state) => state.employees.list)
   console.log(employeesList)
+
   const [data, setData] = React.useState(() => [...employeesList])
   console.log(data)
+
   React.useEffect(() => {
     setData([...employeesList])
   }, [employeesList])
+
   const [filterText, setFilterText] = React.useState('')
-  const [resetPaginationToggle, setResetPaginationToggle] =
-    React.useState(false)
+  const [resetPaginationToggle, setResetPaginationToggle] = React.useState(false)
+
   const filteredItems = dataMocked.filter(
+  // const filteredItems = data.filter(
     (item) =>
       (item.firstName &&
         item.firstName.toLowerCase().includes(filterText.toLowerCase())) ||
       (item.lastName &&
         item.lastName.toLowerCase().includes(filterText.toLowerCase())) ||
-      (item.department &&
-        item.department.toLowerCase().includes(filterText.toLowerCase())) ||
+      (item.departement &&
+        item.departement.toLowerCase().includes(filterText.toLowerCase())) ||
       (item.city &&
         item.city.toLowerCase().includes(filterText.toLowerCase())) ||
       (item.state &&
